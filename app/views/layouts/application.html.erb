@@ -19,16 +19,16 @@
   <body>
   
     <!--ヘッダー-->
-    <%= render "layouts/header" %>
+    <%= render "layouts/header2" %>
     
     <!--メイン-->
     <div class="conteiner">
       <% if flash[:notice] %>
         <%= flash[:notice] %>
       <% end %>
-      <%= yield %>
     </div>
     
+    <%= yield %>
     <!--フッター-->
     <%= render "layouts/footer" %>
    
