@@ -22,9 +22,13 @@ class SignupUserTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     follow_redirect!
     assert_template "users/show"
+    assert is_logged_in?
     
     assert_match name, response.body
   end
   
   # エラーメッセージが表示されるか確認
+  test "errors_message" do
+    
+  end
 end

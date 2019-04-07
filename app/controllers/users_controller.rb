@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+  before_action :logged_in? ,only: [:show, :edit, :update]
   
   def new
     @user = User.new
@@ -19,9 +19,13 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-  
     respond_to do |wants|
       if @user.save
+        
+        # ログインする
+        login_session(@user)
+        login_cookies(@user)
+        
         flash[:notice] = 'User was successfully created.'
         wants.html { redirect_to(@user) }
         wants.xml  { render :xml => @user, :status => :created, :location => @user }
