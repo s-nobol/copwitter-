@@ -17,11 +17,11 @@
                 <!--#ドロップアウトボタンの追加-->
                 <%= link_to "#{current_user.name}", "#", class: "nav-link", 'data-toggle': :dropdown  %>
                   <ul class="dropdown-menu">
-                    <li><%= link_to "Profile", current_user %></li>
+                    <li><%= link_to "マイページ", current_user %></li>
                     <li><%= link_to "ユーザー一覧", "#" %></li>
-                    <li><%= link_to "設定", "#" %></li>
+                    <li><%= link_to "設定", edit_user_path(current_user) %></li>
                     
-                    <li class="divider"></li>
+                    <li class="divider border-bottom border-light p-1"></li>
                     <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
                   </ul>
                   

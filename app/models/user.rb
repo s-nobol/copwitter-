@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-  
+  has_one :status, dependent: :destroy
   
   validates :name ,presence: true, length: { maximum: 55 }
   validates :email ,presence: true
   
   has_secure_password
-  validates :password, presence: true, length: { minimum: 5 }
+  validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
   
   attr_accessor :cookies_token
   

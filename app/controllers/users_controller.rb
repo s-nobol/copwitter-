@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in? ,only: [:show, :edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
   
   def new
     @user = User.new
@@ -10,7 +11,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @users = User.find(params[:id])
+    # @status = @users.status
   end
 
   def index
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
         # ログインする
         login_session(@user)
         login_cookies(@user)
+        @user.create_status
         
         flash[:notice] = 'User was successfully created.'
         wants.html { redirect_to(@user) }
@@ -47,8 +50,33 @@ class UsersController < ApplicationController
     end
   end
   
+  def update
+    @users = User.find(params[:id])
+    
+    respond_to do |wants|
+      if @users.update_attributes(user_params) && @users.status.update_attributes(status_params)
+        flash[:notice] = "編集しました　#{ params[:user] } ステータス#{ params[:status]}"
+        wants.html { redirect_to(@users) }
+        wants.xml  { head :ok }
+      else
+        wants.html { render :action => "edit" }
+        wants.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   private
     def user_params
        params.require(:user).permit(:name, :email, :password)
+    end
+    
+    def status_params
+       params.require(:status).permit(:address, :link, :barthday)
+    end
+    
+     # 正しいユーザーかどうか確認
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless @user == current_user
     end
 end

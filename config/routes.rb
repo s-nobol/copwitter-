@@ -27,6 +27,13 @@ end
 # ログイン機能作成(セッションページクッキー作成)
 # git checkout -b create-login
 # rails g controller Sessions new
-
-# クッキーの作成
 # rails g migration add_cookies_to_users cookies_digest:string
+
+# editページの作成
+# Statusモデル作成
+# rails g model Status address:string barthday:string link:string
+
+# mailerの追加
+# rails g mailer UserMailser activation password_rest
+# Admin追加
+# rails g migration add_admin_to_users admin:string

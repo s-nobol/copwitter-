@@ -1,2 +1,51 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+
+
+<!--ユーザーイメージ-->
+<div class="bg-image">
+  <div class="conteiner"> 
+      <h1>Users#edit</h1>
+    <p>Find me in app/views/users/edit.html.erb</p>
+    <h1 class=" bg-gray text-center">ユーザーホーム画像</h1>
+  </div>
+</div>
+
+<!--モーションバー-->
+<%= render "shared/motion_bar"%>
+
+
+<div class="bg-light">
+  <div class="conteiner"> 
+  
+    <!--メインView-->
+    <div class="row "> 
+      
+      <!--ユーザーステータス-->
+      <div class="col-3 p-1">
+        <p>ユーザーステータス</p>
+        <div class="text-center bg-white p-2">
+          <%= image_tag("logo.png") %>
+          <input type="submit" value="アップデート" class="btn btn-light">
+        </div>
+        
+        <%= render "shared/user_status" %>
+      </div>
+      
+      <!--編集フォーム-->
+      <div class="col-6 p-1">
+        <p>編集フォーム</p>
+        <%= render "shared/edit_form" %>
+      </div>
+      
+      <!--トレンド-->
+      <div class="col-3 p-1">
+        <p>急上昇トレンド</p>
+        
+        <div class="border border-white bg-white">
+          <h5>トレンド</h5>
+          <span class="text-muted">世界で人気の記事ですみんなでシェアしましょう</span>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
