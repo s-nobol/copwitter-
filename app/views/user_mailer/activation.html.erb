@@ -1,0 +1,43 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+ <h1 class="title"><%= image_tag "logo.png" ,class:"title_image" %>Sample App</h1>
+
+<p class="name" >Hi <%= @user.name %>,</p>
+<p class="subtitle">
+Twitterアプリへようこそ！ アカウントを有効にするには、以下のリンクをクリックしてください。
+</p>
+<div class="text-center">
+
+<%= link_to edit_activation_url(@user.activation_token, email: @user.email),
+                edit_activation_url(@user.activation_token, email: @user.email)
+                 %>
+</div>
+              
+
+                
+                
+<!--スタイルの設定-->
+<style>
+  .title{
+   text-align: center;
+  }
+  .title_image{
+    width: 45px;
+    height: 100%;
+  }
+  .name{
+  color: gray;
+  text-align: center;
+  }
+  .subtitle{
+  color: gray;
+  text-align: center;
+  }
+  .link{
+   backgound-color: blue;
+   border: 1px solid blue;  
+   padding: 5px;
+  }
+</style>

@@ -7,12 +7,12 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
   
-  attr_accessor :cookies_token
+  attr_accessor :cookies_token, :activation_token
   
+  # ランダムなトークン作成
   def create_token
     SecureRandom.urlsafe_base64
   end
-  
   
   # クッキーをデータべースに保存
   def create_cookies_digest
@@ -20,10 +20,17 @@ class User < ApplicationRecord
     update_attribute(:cookies_digest, User.digest(cookies_token))
   end 
   
+  # Activetion_tokenをデータべースに保存
+  def create_activation_digest
+    self.activation_token = create_token
+    update_attribute(:activation_digest, User.digest(activation_token))
+  end 
+  
   # 渡されたトークンがダイジェストと一致したらtrueを返す
-  def authenticated?(token)
+  def authenticated?(attribute, token)
     return false if token.nil?
-    BCrypt::Password.new(cookies_digest).is_password?(token)
+    digest = send("#{attribute}_digest") 
+    BCrypt::Password.new(digest).is_password?(token)
   end
   
   # 渡された文字列のハッシュ値を返す
@@ -35,5 +42,9 @@ class User < ApplicationRecord
   
   def foget
     update_attribute( :cookies_digest, nil )
+  end
+  
+  def activation
+    update_attribute( :activated, true )
   end
 end

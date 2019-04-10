@@ -8,16 +8,23 @@ Rails.application.routes.draw do
   get 'static_pages/policy'
   get 'static_pages/corporate'
   
+  # ログイン
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
+  # サインアップ
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
+  
   # ルートページ
   root 'static_pages#home'
   resources :users 
+  resources :activations, only: [:edit]
 end
+
+# herokuインストール
+# $ source <(curl -sL https://cdn.learnenough.com/heroku_install)
 
 
 #ユーザー作成(名前、メール、パスワード)
@@ -34,6 +41,6 @@ end
 # rails g model Status address:string barthday:string link:string
 
 # mailerの追加
-# rails g mailer UserMailser activation password_rest
-# Admin追加
-# rails g migration add_admin_to_users admin:string
+# rails g controller Activations edit
+# rails g migration add_activation_to_users activation_digest:string activated:boolean 
+# rails g mailer UserMailer activation password_reset

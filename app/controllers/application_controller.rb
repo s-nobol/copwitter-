@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   
   include SessionsHelper
   
-  
   # ユーザーがログインしているか
   def logged_in?
     !current_user.nil?

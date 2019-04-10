@@ -13,11 +13,15 @@
 #   password_digest: MyString
 
 first_user: 
-  name: first_user
-  email: first_user@test.com
+  name: firstuser
+  email: firstuser@test.com
   password_digest: <%= User.digest('password') %>
+  activated: true
 
 second_user: 
-  name: second_user
-  email: second_user@test.com
+  name: seconduser
+  email: seconduser@test.com
   password_digest: <%= User.digest('password') %>
+  activated: true
+  
+    

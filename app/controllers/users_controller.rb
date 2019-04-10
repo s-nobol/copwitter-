@@ -24,13 +24,13 @@ class UsersController < ApplicationController
     respond_to do |wants|
       if @user.save
         
-        # ログインする
-        login_session(@user)
-        login_cookies(@user)
+        # アカウント有効メール送信
+        @user.create_activation_digest
+        UserMailer.activation(@user).deliver_now
         @user.create_status
         
-        flash[:notice] = 'User was successfully created.'
-        wants.html { redirect_to(@user) }
+        flash[:notice] = "メールを送信しました #{ edit_activation_url(@user.activation_token, email: @user.email)}"
+        wants.html { redirect_to(root_path) }
         wants.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         flash[:notice] = "ユーザー作成できません"

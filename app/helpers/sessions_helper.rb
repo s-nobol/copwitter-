@@ -17,7 +17,7 @@ module SessionsHelper
       @current_user ||= User.find(session[:user_id])      
     elsif ( user_id = cookies.signed[:user_id] )
       user = User.find(user_id)
-      if user && user.authenticated?(cookies[:token])
+      if user && user.authenticated?(:cookies,cookies[:token])
         login_session(user)
         @current_user = user 
       end
@@ -42,3 +42,4 @@ module SessionsHelper
     logout_session
   end
 end
+# activations/Gz47WTEE2tb9PnBujs-oDQ/edit?email=3D147%40example.com
