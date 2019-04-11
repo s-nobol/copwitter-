@@ -12,13 +12,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
   
   # ログインしてないとはじかれる
-  test "no_login_user get_show" do
-    get user_path(@user)
-    assert_redirected_to login_path 
-    login_as(@user)
-    get user_path(@user)
-    assert_response :success
-  end
+  # test "no_login_user get_show" do
+  #   get user_path(@user)
+  #   assert_redirected_to login_path 
+  #   login_as(@user)
+  #   get user_path(@user)
+  #   assert_response :success
+  # end
   
   test "no_login_user get_edit" do
     get edit_user_path(@user)

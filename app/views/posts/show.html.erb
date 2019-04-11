@@ -30,9 +30,12 @@
       <!--記事-->
       <div class="col-6 p-1">
         <p>記事</p>
-        <% if @posts.any? %>
+        <% if !@posts.nil? %>
           <%= render @posts %>
-          <%= paginate @posts, window: 2 %>
+          
+          <p>コメント</p>
+          <%#= @comments %>
+          <%#= paginate  @comments, window: 2 %>
         <% else %>
         
           <!--記事がないときの表示-->

@@ -1,0 +1,50 @@
+
+<div class="  mt-2 post">
+  <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
+    
+    <!--post_nav-->
+    <ul class="navbar-nav  mr-auto">
+      <a href="#" class="nav-item">ツイート</a>
+      <a href="#" class="nav-item ml-2">ツイートと返信</a>
+    </ul>
+   
+      <!--#ドロップアウトボタン-->
+    <ul class="navbar-nav float: right">　 
+        <%= link_to "", "#", class:"nav-item fas fa-align-justify text-light", 'data-toggle': :dropdown  %>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <% if current_post?(post.user) %>
+            <li><%= link_to "削除する", post, method: :delete ,class:"dropdown-item text-danger" %></li>
+          <% end %>
+          <li><%= link_to "通報する", "#" ,class:"dropdown-item text-dark" %></li>
+        </ul>
+    </ul>
+  </nav> 
+  
+  <div class=" p-3">
+  
+      <!--User-->
+      <h6 class="font-weight-bolder"><%= image_tag("logo.png",class:"",width:"30" ,height:"30") %><%= post.user.name %> (ユーザー名)
+        <small class="text-muted"><%= post.created_at %></small>
+        <!--<i class="fas fa-bars text-dark float-right"></i>-->
+      </h6>
+      
+      <!--Content-->
+      <p class="text-dark"><%= post.content %></p>
+   
+   
+    <nav class="nav"> 
+    
+      <!--いいねボタン-->
+      <li class="nav-item text-secondary ">
+        <i class="far fa-heart"> 152</i>
+      </li>
+      
+      <!--コメントボタン-->
+      <li class="nav-item text-secondary ml-2">
+        <i class="far fa-comment-alt"> 362</i>
+      </li>
+      
+    </nav> 
+  </div>
+</div>
+

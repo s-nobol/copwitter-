@@ -17,7 +17,7 @@ module SessionsHelper
       @current_user ||= User.find(session[:user_id])      
     elsif ( user_id = cookies.signed[:user_id] )
       user = User.find(user_id)
-      if user && user.authenticated?(:cookies,cookies[:token])
+      if user && user.authenticated?(:cookies, cookies[:token])
         login_session(user)
         @current_user = user 
       end
@@ -41,5 +41,14 @@ module SessionsHelper
     logout_cookies
     logout_session
   end
+  
+  # 正しいユーザーか確認(current_user?にしてもいい)
+  def current_post?(post_user)
+    if !current_user.nil? 
+      if current_user == post_user
+        post_user
+      end
+    end
+  end
+  
 end
-# activations/Gz47WTEE2tb9PnBujs-oDQ/edit?email=3D147%40example.com

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   resources :users 
   resources :activations, only: [:edit]
+  resources :posts, only: [:show, :create, :destroy]
 end
 
 # herokuインストール
@@ -44,3 +45,12 @@ end
 # rails g controller Activations edit
 # rails g migration add_activation_to_users activation_digest:string activated:boolean 
 # rails g mailer UserMailer activation password_reset
+
+# Post作成クラスの追加
+# rails g model Post content:text user:references
+# rails g controller Posts 
+
+# Postドロップダウンメニュー　（削除　通報）
+# post_formは自分以外のユーザーの時は表示されないようにする。（もしくはべつに設定する）
+
+# いいね、コメントボタン編集

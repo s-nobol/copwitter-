@@ -13,8 +13,45 @@
  *= require_tree .
  *= require_self
  */
+/*@import "bootstrap-sprockets";*/
+/*@import "bootstrap";*/
+
+/*applicationのcss*/
 
 .conteiner{
   width: 75%;
   margin: auto;
+  }
+  
+.content-form{
+  width: 100%;
+  height: 150px;
+  }
+.background{
+  background-color: rgba(120, 130, 130, 0.1);
+}
+/*ボタン、チェックボックスのcss*/
+/*.btn-color{*/
+/*  padding: 8px 25px;*/
+/*  color: white;*/
+/*  background-color: deepskyblue;*/
+/*  border-color: deepskyblue;*/
+/*  border-radius:  5px;*/
+/*  }*/
+
+  
+  /*記事のcss*/
+.post{
+  background-color: white;
+  }
+.post:hover{
+  background-color: rgb(250, 250, 250);
+  border-color: white;
+  }
+  
+.fa-heart:hover{
+  color: red;
+  }
+.fa-comment-alt:hover{
+  color: cornflowerblue;
   }

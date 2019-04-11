@@ -1,0 +1,9 @@
+<div class="" >
+  <%= form_for(@users.posts.build) do |f| %>
+    <%#= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_area :content, placeholder: "記事を書く" , class: "content-form" %>
+    </div>
+    <%= f.submit "Post", class: "btn btn-primary btn-sm btn-block " %>
+  <% end %>
+</div>

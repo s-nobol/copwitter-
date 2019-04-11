@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in? ,only: [:show, :edit, :update]
+  before_action :logged_in? ,only: [ :edit, :update,]
   before_action :correct_user,   only: [:edit, :update]
   
   def new
@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @users = User.find(params[:id])
+    @posts = @users.posts.page(params[:page]).per(6)
   end
 
   def edit
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.all #あとで変更
+    @users = User.page(params[:page]).per(6)
   end
   
   def create
