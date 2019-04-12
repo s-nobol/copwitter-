@@ -1,6 +1,9 @@
 <!--ユーザープロフィールページ-->
-<div class="">
-  <p>名前：<%= link_to user.name, user %></p>
-  <p>メール：<%= user.email%></p>
-  <p class="text-break">パスワード：<%= user.password_digest %></p>
+<div class="bg-white p-3 mb-2">
+  <h6 class="font-weight-bolder">
+          <%= image_tag("logo.png",class:"",width:"30" ,height:"30") %><%= user.name %> (ユーザー名)
+          <small class="text-muted"><%= user.created_at %></small>
+  </h6>
+  <p>メール：<%= user.email %></p>
+  <!--<p class="text-break">パスワード：<%#= user.password_digest %></p>-->
 </div>

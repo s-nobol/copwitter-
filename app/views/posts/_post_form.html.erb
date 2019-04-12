@@ -1,5 +1,5 @@
 <div class="" >
-  <%= form_for(@users.posts.build) do |f| %>
+  <%= form_for(@user.posts.build) do |f| %>
     <%#= render 'shared/error_messages', object: f.object %>
     <div class="field">
       <%= f.text_area :content, placeholder: "記事を書く" , class: "content-form" %>

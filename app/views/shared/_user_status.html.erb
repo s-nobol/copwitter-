@@ -1,9 +1,18 @@
-<p>ステータス</p>
-<!--何回も呼び出すのはナンセンス　@statusに統一すべき-->
 
-<% if @users.status %>
-  <p class="text-muted">住所  <%= @users.status.address %></p>
-  <p class="text-muted">リンク <%= @users.status.link %></p>
-  <p class="text-muted">登録日 <%= @users.created_at %></p>
-  <p class="text-muted">誕生日 <%= @users.status.barthday %></p>
+<!--ユーザープロフィールページ-->
+<div class="">
+  <p>名前：<%= link_to @user.name, @user %></p>
+  <p>メール：<%= @user.email %></p>
+  <!--<p class="text-break">パスワード：<%#= user.password_digest %></p>-->
+</div>
+
+
+<!--何回も呼び出すのはナンセンス　@statusに統一すべき-->
+<% if @user.status %>
+  <p class="text-muted">住所  <%= @user.status.address %></p>
+  <p class="text-muted">リンク <%= @user.status.link %></p>
+  <p class="text-muted">登録日 <%= @user.created_at %></p>
+  <p class="text-muted">誕生日 <%= @user.status.barthday %></p>
+<% else %>
+<p>まだユーザーステータスが入力されていません</p>
 <% end %>

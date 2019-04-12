@@ -19,9 +19,17 @@ Rails.application.routes.draw do
   
   # ルートページ
   root 'static_pages#home'
+  
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :users 
-  resources :activations, only: [:edit]
-  resources :posts, only: [:show, :create, :destroy]
+  resources :activations,         only: [:edit]
+  resources :posts,               only: [:show, :create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
+
 end
 
 # herokuインストール
@@ -53,4 +61,8 @@ end
 # Postドロップダウンメニュー　（削除　通報）
 # post_formは自分以外のユーザーの時は表示されないようにする。（もしくはべつに設定する）
 
-# いいね、コメントボタン編集
+# follow機能の作成
+# rails g model Relationship follower_id:integer followed_id:integer
+# rails g controller Relationships
+
+# followのテスト

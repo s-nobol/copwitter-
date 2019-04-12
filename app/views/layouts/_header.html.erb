@@ -1,4 +1,4 @@
-<header class="bg-white p-1 border-bottom">
+<header class="bg-white border-bottom">
 
 
   <div class="conteiner">
@@ -27,10 +27,10 @@
                   </ul>
                   
             <% else %>
-                <a class="nav-link" href="#">ホーム</a>
-                <a class="nav-link " href="#">about</a>
-                <%= link_to "新規登録", signup_path ,class:"nav-link" %>
-                <%= link_to "ログイン", login_path ,class:"nav-link" %>      
+                <%= link_to "ホーム", static_pages_home_path ,class:"nav-link text-secondary" %>
+                <%= link_to "about", static_pages_about_path ,class:"nav-link text-secondary" %>
+                <%= link_to "新規登録", signup_path ,class:"nav-link text-secondary" %>
+                <%= link_to "ログイン", login_path ,class:"nav-link text-secondary" %>      
             <% end %>
         </ul>
         

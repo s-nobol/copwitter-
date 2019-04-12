@@ -1,6 +1,5 @@
 
-
-<!--ユーザーイメージ-->
+  <!--ユーザーイメージ-->
 <div class="bg-image">
   <div class="conteiner"> 
     <h1>Users#show</h1>
@@ -9,21 +8,19 @@
   </div>
 </div>
 
-<!--モーションバー-->
+  <!--モーションバー-->
 <%= render "shared/motion_bar"%>
 
-
+  
+  <!--メインView-->
 <div class=" background">
   <div class="conteiner"> 
-  
-    <!--メインView-->
     <div class="row "> 
       
       <!--ユーザーステータス-->
       <div class="col-3 p-2">
         <p>ユーザーステータス</p>
-        <%= render "posts/post_form" %>
-        <%= render @users %>
+        <%#= render "posts/post_form" %>
         <%= render "shared/user_status" %>
       </div>
       
@@ -40,6 +37,7 @@
         <% end %>
       </div>
       
+
       <!--トレンド-->
       <div class="col-3 p-1">
         <p>アクション</p>

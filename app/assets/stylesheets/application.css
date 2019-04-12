@@ -39,6 +39,23 @@
 /*  border-radius:  5px;*/
 /*  }*/
 
+/*follow-ボタン*/
+  .follow-btn{
+    padding: 8px 25px;
+    color: deepskyblue;
+    background-color: white;
+    border-color: deepskyblue;
+    border-radius:  5px;
+    /*#0099FF*/
+  }
+  .unfollow-btn{
+    padding: 8px 25px;
+    color: #DDDDDD;
+    background-color: white;
+    border-color: #DDDDDD;
+    border-radius:  5px;
+  }
+
   
   /*記事のcss*/
 .post{
@@ -55,3 +72,5 @@
 .fa-comment-alt:hover{
   color: cornflowerblue;
   }
+  
+  

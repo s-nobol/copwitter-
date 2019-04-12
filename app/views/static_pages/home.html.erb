@@ -1,8 +1,73 @@
 
-<div class="conteiner">
-  <h1>StaticPages#home</h1>
-  <p>Find me in app/views/static_pages/home.html.erb</p>
-  <p>これはルートページです</p>
+
+
+<!--ユーザーShowと同じの作成-->
+
+
+<% if !current_user.nil? %>
+
+      <!--ユーザーイメージ-->
+    <div class="bg-image">
+      <div class="conteiner"> 
+        <h1>Users#show</h1>
+        <p>Find me in app/views/users/show.html.erb</p>
+        <h1 class=" bg-gray text-center">ユーザーホーム画像</h1>
+      </div>
+    </div>
+    
+    <!--モーションバー-->
+    <%= render "shared/motion_bar"%>
+    
+    <!--メインView-->
+    <div class=" background">
+      <div class="conteiner"> 
+        <div class="row "> 
+          
+          <!--ユーザーステータス-->
+          <div class="col-3 p-2">
+          
+            <p>ユーザーステータス</p>
+            <%#= render "posts/post_form" %>
+            <%= render "shared/user_status" %>
+          </div>
+          
+          <!--記事-->
+          <div class="col-6 p-1">
+            <p>記事</p>
+            <% if @posts.any? %>
+              <%= render @posts %>
+              <%= paginate @posts, window: 2 %>
+            <% else %>
+            
+              <!--記事がないときの表示-->
+              <%= render "posts/unpost.html.erb" %>
+            <% end %>
+          </div>
+          
+    
+          <!--トレンド-->
+          <div class="col-3 p-1">
+            <p>アクション</p>
+            <div class="bg-white p-2">
+              <h5>ツイッターを使ってみよう</h5>
+              <span class="text-muted">登録してあなただけのタイムラインを作りましょう</span>
+              <p><%=  link_to "サインアップ", new_user_path, class:"btn btn-primary mx-auto"%></p>
+            </div>
+            
+            <div class=" bg-white p-2">
+              <h5>トレンド</h5>
+              <span class="text-muted">世界で人気の記事ですみんなでシェアしましょう</span>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
   
-  <!--ユーザーShowと同じの作成-->
-</div>
+<% else %>
+  <div class="conteiner">
+    <h1>StaticPages#home</h1>
+    <p>Find me in app/views/static_pages/home.html.erb</p>
+    <p>これはルートページです</p>
+  </div>
+<% end %>

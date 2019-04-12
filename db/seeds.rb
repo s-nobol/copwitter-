@@ -14,7 +14,7 @@ User.create(name: "123",
 
 15.times do |n|
   User.create(name: "#{n}_user", 
-              email: "#user_{n}@test.com",
+              email: "#user_#{n}@test.com",
               password: "password",
               activated: true )
 end
@@ -25,3 +25,11 @@ users = User.order(:created_at).take(6)
   content = "適当な記事 番号#{n}"
   users.each { |user| user.posts.create!(content: content) }
 end
+
+# フォロワーの作成
+users = User.all
+user  = users.first
+following = users[2..10]
+followers = users[3..10]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

@@ -1,5 +1,5 @@
 <div class="bg-white p-3">
-   <%= form_for(@users, method: :patch ) do |f| %>
+   <%= form_for(@user, method: :patch ) do |f| %>
       <h3>アカウント編集</h3>
       
       <%= render 'shared/error_messages', object: f.object %>
@@ -13,7 +13,7 @@
       <%#= f.label :password %>
       <%#= f.password_field :password, class: 'form-control' %>
          
-         <%= fields_for(@users.status) do |h| %>
+         <%= fields_for(@user.status) do |h| %>
             <%= h.label :住所 ,class: "mt-2" %>
             <%= h.text_field :address, class: 'form-control' %>
       

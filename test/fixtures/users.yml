@@ -24,4 +24,13 @@ second_user:
   password_digest: <%= User.digest('password') %>
   activated: true
   
-    
+taro: 
+  name: taro
+  email: taro@test.com
+  password_digest: <%= User.digest('password') %>
+  activated: true
+satoshi: 
+  name: satoshi
+  email: satoshi@test.com
+  password_digest: <%= User.digest('password') %>
+  activated: true

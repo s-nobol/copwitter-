@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in? ,only: [ :edit, :update,]
+  before_action :logged_in? ,only: [:index, :edit, :update, :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   
   def new
@@ -7,12 +7,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @users = User.find(params[:id])
-    @posts = @users.posts.page(params[:page]).per(6)
+    @user = User.find(params[:id])
+    @posts = @user.posts.page(params[:page]).per(6)
   end
 
   def edit
-    @users = User.find(params[:id])
+    @user = User.find(params[:id])
     # @status = @users.status
   end
 
@@ -52,18 +52,33 @@ class UsersController < ApplicationController
   end
   
   def update
-    @users = User.find(params[:id])
+    @user = User.find(params[:id])
     
     respond_to do |wants|
-      if @users.update_attributes(user_params) && @users.status.update_attributes(status_params)
+      if @user.update_attributes(user_params) && @user.status.update_attributes(status_params)
         flash[:notice] = "編集しました　#{ params[:user] } ステータス#{ params[:status]}"
-        wants.html { redirect_to(@users) }
+        wants.html { redirect_to(@user) }
         wants.xml  { head :ok }
       else
         wants.html { render :action => "edit" }
         wants.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  # フォロワーページ
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.page(params[:page]).per(6)
+    render 'index'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users  = @user.followers.page(params[:page]).per(6)
+    render 'index'
   end
   
   private
