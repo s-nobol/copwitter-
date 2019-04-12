@@ -1,11 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
     
-    if current_user
+    if !current_user.nil?
       @user = current_user
       @posts = current_user.feed.page(params[:page]).per(6)
-    else
-      
     end
   end
 
