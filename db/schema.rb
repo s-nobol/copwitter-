@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_12_100646) do
+ActiveRecord::Schema.define(version: 2019_04_14_135445) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2019_04_12_100646) do
     t.string "cookies_digest"
     t.string "activation_digest"
     t.boolean "activated", default: false
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
 end

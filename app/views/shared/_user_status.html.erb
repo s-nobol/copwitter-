@@ -3,9 +3,7 @@
 <div class="">
   <p>名前：<%= link_to @user.name, @user %></p>
   <p>メール：<%= @user.email %></p>
-  <!--<p class="text-break">パスワード：<%#= user.password_digest %></p>-->
 </div>
-
 
 <!--何回も呼び出すのはナンセンス　@statusに統一すべき-->
 <% if @user.status %>

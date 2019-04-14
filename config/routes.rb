@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
   resources :users 
   resources :activations,         only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,               only: [:show, :create, :destroy]
   resources :relationships,       only: [:create, :destroy]
 
@@ -65,4 +66,11 @@ end
 # rails g model Relationship follower_id:integer followed_id:integer
 # rails g controller Relationships
 
-# followのテスト
+# password_resetの作成
+# rails g controller PasswordResets new edit --no-test-framework
+# rails g migration add_reset_to_users reset_digest:string reset_sent_at:datetime
+
+# image機能作成（post, user）
+# rails g migration add_picture_to_posts picture:string
+# rails g migration add_image_to_users image:string background_image:string
+# (address　link　barthday message)追加

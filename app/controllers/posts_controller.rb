@@ -22,8 +22,8 @@ class PostsController < ApplicationController
   
   def show
     @posts = Post.find(params[:id])
-    @users = User.find(@posts.user_id)
-    #まだ作成中@comments = @post.comments
+    @user = User.find(@posts.user_id)
+    #まだ作成中@comments = @post.comments.page(params[:page]).per(10)
   end
   
   

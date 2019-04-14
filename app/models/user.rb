@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
   
-  attr_accessor :cookies_token, :activation_token
+  attr_accessor :cookies_token, :activation_token, :reset_token
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -44,6 +44,13 @@ class User < ApplicationRecord
     update_attribute(:activation_digest, User.digest(activation_token))
   end 
   
+  # Password_tokenをデータべースに保存
+  def create_password_reset_digest
+    self.reset_token = create_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end 
+  
   # 渡されたトークンがダイジェストと一致したらtrueを返す
   def authenticated?(attribute, token)
     return false if token.nil?
@@ -61,8 +68,9 @@ class User < ApplicationRecord
     update_attribute( :activated, true )
   end
   
-  def feed
-    Post.where("user_id = ?", id) #self.id
+    # パスワード再設定の期限が切れている場合はtrueを返す
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
   
    # ユーザーをフォローする
