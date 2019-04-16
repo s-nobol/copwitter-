@@ -29,7 +29,9 @@
       
       <!--Content-->
       <p class="text-dark"><%= post.content %></p>
-   
+      
+      <!--画像-->
+      <%= image_tag post.picture.url if post.picture? %>
    
     <nav class="nav"> 
     

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :logged_in?, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
   
+  
   def create
     @post = current_user.posts.build(post_params) 
     if @post.save
@@ -31,7 +32,7 @@ class PostsController < ApplicationController
   
     # 記事のパラメータ
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :picture)
     end
     
     # 削除する記事が自分のではなければはじく
@@ -39,4 +40,5 @@ class PostsController < ApplicationController
         @post = current_user.posts.find_by(id: params[:id])
         redirect_to root_url if @post.nil?
     end
+
 end

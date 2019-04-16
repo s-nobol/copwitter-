@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   
+  # 画像更新
+  post 'update_image', to: 'users#image'
   # ルートページ
   root 'static_pages#home'
   
@@ -72,5 +74,8 @@ end
 
 # image機能作成（post, user）
 # rails g migration add_picture_to_posts picture:string
-# rails g migration add_image_to_users image:string background_image:string
-# (address　link　barthday message)追加
+# rails g migration add_image_to_users image:string background_image:string (address　link　barthday message)追加
+
+# userImagerUploader作成
+# rails generate uploader Image
+# rails generate uploader BackgroundImage

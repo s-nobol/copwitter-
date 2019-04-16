@@ -6,11 +6,4 @@
 </div>
 
 <!--何回も呼び出すのはナンセンス　@statusに統一すべき-->
-<% if @user.status %>
-  <p class="text-muted">住所  <%= @user.status.address %></p>
-  <p class="text-muted">リンク <%= @user.status.link %></p>
-  <p class="text-muted">登録日 <%= @user.created_at %></p>
-  <p class="text-muted">誕生日 <%= @user.status.barthday %></p>
-<% else %>
 <p>まだユーザーステータスが入力されていません</p>
-<% end %>

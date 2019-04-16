@@ -10,8 +10,6 @@ class EditUserTest < ActionDispatch::IntegrationTest
   test "user_edit" do
     
     # 初期設定、ログイン
-    @user.create_status
-    assert_not @user.status.nil? ,"@user.status #{@user.status}"
     login_as(@user)
     
     # @userを編集させる
@@ -26,8 +24,9 @@ class EditUserTest < ActionDispatch::IntegrationTest
     name = "test_name"
     email = "email@test.com"
     address = "tokyo"
-    patch user_path(@user) ,params: { user: { name: name, edit: email} , 
-                                      status: { address: address, link: "test.com" , barthday: "1/25"}}
+    patch user_path(@user) ,params: { user: { name: name, edit: email,
+                                              message: "test_msg", address: address, 
+                                              link: "test.com" , barthday: "1/25" } }
     assert_redirected_to @user
     follow_redirect!
     assert_match name, response.body
@@ -36,15 +35,12 @@ class EditUserTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name, @user.name
     # assert_equal email, @user.email, "email? = #{@user.reload.email}"
-    assert_equal address, @user.status.address 
   end
   
   # 別のログインユーザーからのアクセス
   test "differ_login_user" do
     
     # ユーザーの初期設定
-    @user.create_status
-    @other_user.create_status
     login_as(@other_user)
     assert is_logged_in?
     
@@ -57,5 +53,35 @@ class EditUserTest < ActionDispatch::IntegrationTest
                                       status: { address: "toyko", link: "test.com" , barthday: "1/25"}}
     assert_redirected_to root_path
     
+  end
+  
+  # 画僧が編集できるか
+  test "edit_user_image" do
+    
+    # editページにアクセス
+    login_as(@user)
+    get edit_user_path(@user)
+    assert_template "users/edit"
+    
+    # 無効なデータ送信
+    post update_image_path, params: { user: { image: "" } }
+    assert_redirected_to edit_user_path(@user)
+    assert_not flash.empty? , "flash = #{flash[:notice]}"
+    
+    post update_image_path, params: { user: { background_image: "dada.ctc" } }
+    assert_redirected_to edit_user_path(@user)
+    assert_not flash.empty? , "flash = #{flash[:notice]}"
+    
+    post update_image_path, params: { user: nil }
+    assert_redirected_to edit_user_path(@user)
+    assert_not flash.empty? , "flash = #{flash[:notice]}"
+    
+    # 正しいパスを送信
+    image = "test.jpg"
+    post update_image_path, params: { user: { background_image: image } }
+    assert_redirected_to edit_user_path(@user)
+    assert_not flash.empty? , "flash = #{flash[:notice]}"
+    @user.reload
+    # assert_equal image, @user.background_image
   end
 end

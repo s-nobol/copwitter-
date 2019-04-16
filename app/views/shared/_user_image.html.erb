@@ -1,0 +1,85 @@
+<div class="text-center bg-white p-2">
+<%= form_for(:user ,url: update_image_path(@user) ) do |f| %>
+      <%= hidden_field_tag :id, @user.id %>
+
+      <div class="image_form rounded-circle text-center mx-auto mt-4" id="img_field" onClick="$('#file').click()" >
+      
+        <!--// 画像があるときは画像を表示する-->
+          <% if @user.image.present? %>
+            <%= image_tag(@user.image.url , class:"image_form rounded-circle" ,id:"icon") %>
+          <% else %>
+            <i class="fas fa-image mt-4" style="font-size:40px;" id="icon"></i>
+          <% end %>
+        
+        
+          <!--スピナー-->
+           <div class="pt-4 bg-light" style="display: none;" role="status" id="spinner">
+            <span class="spinner-border text-secondary" ></span>
+          </div>
+      </div>
+        
+      <!--ファイルフォーム-->
+      <%= f.file_field :image ,class: "image", style: "display:none;", id: "file" %>
+   
+    
+    <div class="mt-4">
+      <%= f.submit "アップロード", class: "btn btn-primary ", id:"upload-btn" %> 
+  </div>
+<% end %>
+</div>
+<!--【画像アップロード】file_fieldデザイン変更＋画像選択時にプレビュー表示する方法-->
+<script>
+  $(function(){
+    $fileField = $('#file')
+    var spinner = document.getElementById('spinner')
+    var icon = document.getElementById('icon')
+
+          // ビジーwaitを使う
+          function sleep(waitMsec) {
+            var startMsec = new Date();
+            while (new Date() - startMsec < waitMsec);
+          }
+
+          // 選択された画像を取得し表示
+          $($fileField).on('change', $fileField, function(e) {
+          file = e.target.files[0]
+            // if (file.size/1024/1024 > 5) {
+            //   alert('Maximum file size is 5MB. Please choose a smaller file.');
+            // }
+          
+          reader = new FileReader(),
+          $preview = $("#img_field");
+          
+           // 読み込み開始
+          reader.onloadstart = (function () { 
+          icon.style.display="none";
+          spinner.style.display="block";
+          console.log('画像読み込み状態', reader.readyState); 
+          });
+              
+               
+          // 読み込み中
+          reader.onload = (function(file) {
+            return function(e) {
+              $preview.empty();
+              sleep(300);
+              $preview.append($('<img>').attr({
+                src: e.target.result,
+                width: "100%",
+                class: "preview",
+                title: file.name
+              }));
+            };
+          })(file);
+              
+          // 読み込み終了
+         reader.onloadend = function () { 
+            spinner.style.display="none";
+            icon.style.display="block";
+            console.log('画像読み込み状態', reader.readyState); 
+        };
+      reader.readAsDataURL(file);
+    });
+
+  });
+</script>

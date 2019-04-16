@@ -1,17 +1,13 @@
 
 
-<!--ユーザーイメージ-->
-<div class="bg-image">
-  <div class="conteiner"> 
-      <h1>Users#edit</h1>
-    <p>Find me in app/views/users/edit.html.erb</p>
-    <h1 class=" bg-gray text-center">ユーザーホーム画像</h1>
-  </div>
-</div>
-
-<!--モーションバー-->
-<%= render "shared/motion_bar"%>
-
+    <!--ユーザーイメージ-->
+    <div class="">
+        <%= render "shared/user_background_image" %>
+    </div>
+    
+    <!--モーションバー-->
+    <%= render "shared/motion_bar"%>
+    
 
 <div class="bg-light">
   <div class="conteiner"> 
@@ -22,10 +18,7 @@
       <!--ユーザーステータス-->
       <div class="col-3 p-1">
         <p>ユーザーステータス</p>
-        <div class="text-center bg-white p-2">
-          <div><%= image_tag "logo.png", :size =>'150x150' , class:"rounded-circle user_image" %></div>
-          <input type="submit" value="アップデート" class="btn btn-light">
-        </div>
+        <%#= render "shared/user_image"%>
         
         <%= render "shared/user_status" %>
       </div>

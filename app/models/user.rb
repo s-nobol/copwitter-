@@ -12,11 +12,21 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   
-  validates :name ,presence: true, length: { maximum: 55 }
+  # バリテーション
+  validates :name ,presence: true, length: { maximum: 50 }
   validates :email ,presence: true
   
   has_secure_password
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
+  validates :message , length: { maximum: 256 }
+  validates :address , length: { maximum: 50 }
+  validates :link , length: { maximum: 256 }
+  validates :barthday , length: { maximum: 50 }
+  mount_uploader :image, ImageUploader
+  mount_uploader :background_image, BackgroundImageUploader
+  validate  :image_size
+  validate  :background_image_size
+  
   
   attr_accessor :cookies_token, :activation_token, :reset_token
   
@@ -95,4 +105,16 @@ class User < ApplicationRecord
     Post.where("user_id IN (#{following_ids})
                     OR user_id = :user_id", user_id: id)
   end
+  private
+    # アップロードされた画像のサイズをバリデーションする
+    def image_size
+      if image.size > 5.megabytes
+        errors.add(:picture, "should be less than 5MB")
+      end
+    end
+    def background_image_size
+      if background_image.size > 5.megabytes
+        errors.add(:picture, "should be less than 5MB")
+      end
+    end
 end

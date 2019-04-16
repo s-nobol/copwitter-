@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in? ,only: [:index, :edit, :update, :following, :followers]
+  before_action :logged_in? ,only: [:index, :edit, :update, :following, :followers, :image]
   before_action :correct_user,   only: [:edit, :update]
+  before_action :no_image, only: [:image]
   
   def new
     @user = User.new
@@ -29,7 +30,6 @@ class UsersController < ApplicationController
         # アカウント有効メール送信
         @user.create_activation_digest
         UserMailer.activation(@user).deliver_now
-        @user.create_status
         
         flash[:notice] = "メールを送信しました #{ edit_activation_url(@user.activation_token, email: @user.email)}"
         wants.html { redirect_to(root_path) }
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     respond_to do |wants|
-      if @user.update_attributes(user_params) && @user.status.update_attributes(status_params)
+      if @user.update_attributes(user_params)
         flash[:notice] = "編集しました　#{ params[:user] } ステータス#{ params[:status]}"
         wants.html { redirect_to(@user) }
         wants.xml  { head :ok }
@@ -64,6 +64,18 @@ class UsersController < ApplicationController
         wants.html { render :action => "edit" }
         wants.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+  
+  
+  # もしクライアントユーザーでなかったらはじく
+  def image
+    if current_user.update_attributes(image_params)
+      flash[:notice] = "画像を更新しました"
+      redirect_to edit_user_path(current_user)
+    else
+      flash[:notice] = "画像を更新できませんでした"
+      redirect_to edit_user_path(current_user)
     end
   end
   
@@ -86,14 +98,22 @@ class UsersController < ApplicationController
     def user_params
        params.require(:user).permit(:name, :email, :password)
     end
-    
-    def status_params
-       params.require(:status).permit(:address, :link, :barthday)
+
+    def image_params
+      params.require(:user).permit(:image, :background_image)
     end
     
      # 正しいユーザーかどうか確認
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless @user == current_user
+    end
+    
+    # もし画像がなければもとに戻す
+    def no_image
+      unless params[:user] 
+        flash[:notice] = "画像が挿入されていません"
+        redirect_to edit_user_path(current_user)
+      end
     end
 end
