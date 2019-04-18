@@ -1,0 +1,33 @@
+
+
+<!--ユーザーコメント-->
+<div class="media bg-white p-2 mb-1">
+    
+    <!--ユーザー画像-->
+    <% if comment.user.image.present? %>
+        <%= image_tag(comment.user.image.url, class:"rounded-circle", width:"40" ,height:"40") %>
+    <% else %>
+        <%= image_tag("logo.png", class:"rounded-circle", width:"40" ,height:"40") %>
+    <% end %>
+      
+    <div class="media-body ml-2">
+      <h6 class="mt-0" > 
+      
+        <!--ユーザー名-->
+        <%= link_to comment.user.name, user_path(comment.user) , class:"text-dark" %>
+        <small class="text-muted"><%= comment.created_at %></small>
+        
+        <%= "comment.id : #{comment.id}  post_id #{comment.post.id}" %>
+        
+        <!--削除ボタン-->
+        <% if @post.user == current_user %>
+            <%= link_to "削除", comment_path(comment) ,method: :delete , class:"float-right" %>
+        <% end %>
+      </h6>
+      
+     <tx class=""><%= comment.content %></tx>  
+    </div>
+ </div>
+
+<!--削除は　ポスト作成者のみ-->
+<!-- @post.user == current_user -->

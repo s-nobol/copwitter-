@@ -1,0 +1,16 @@
+<div class="bg-white p-3" >
+   <%= form_for(@comment) do |f| %>
+        <%= hidden_field_tag :post_id, @post.id %>
+        
+        <!--エラーメッセージ-->
+        <%= render 'shared/error_messages', object: f.object %>
+        
+        <!--テキストフィールド-->
+        <%= f.text_field :content, class: 'form-control ', id:"exampleFormControlTextarea1" %>
+        
+        <!--送信ボタン-->
+        <div class="text-right">
+          <%= f.submit "コメント送信", class: "btn btn-primary  mt-3" %>
+        </div>
+  <% end %>
+</div>

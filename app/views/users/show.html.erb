@@ -33,6 +33,17 @@
       <div class="col-6 p-1">
         <p>記事</p>
         <% if @posts.any? %>
+          <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
+      
+              <!--post_nav-->
+              <ul class="navbar-nav  mr-auto">
+                <a href="#" class="nav-item">ツイート</a>
+                <a href="#" class="nav-item ml-2">ツイートと返信</a>
+              </ul>
+              
+              
+          </nav> 
+                
           <%= render @posts %>
           <%= paginate @posts, window: 2 %>
         <% else %>

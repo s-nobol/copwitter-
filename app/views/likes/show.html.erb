@@ -12,36 +12,42 @@
     <% end %>
 </div>
 
-
-<!--モーションバー-->
+  <!--モーションバー-->
 <%= render "shared/motion_bar"%>
 
-
+  
+  <!--メインView-->
 <div class=" background">
   <div class="conteiner"> 
-  
-    <!--メインView-->
     <div class="row "> 
       
       <!--ユーザーステータス-->
       <div class="col-3 p-2">
         <p>ユーザーステータス</p>
+        <%= render "posts/post_form" %>
         <%= render "shared/user_status" %>
       </div>
       
       <!--記事-->
       <div class="col-6 p-1">
         <p>記事</p>
-        <% if !@post.nil? %>
-        
-          <div class="bg-white">
-            <%= render @post %>
-            <%= render "comments/comment_form"%>
-          </div>
+        <% if @posts.any? %>
+          <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
+      
+              <!--post_nav-->
+              <ul class="navbar-nav  mr-auto">
+                <a href="#" class="nav-item">ツイート</a>
+                <a href="#" class="nav-item ml-2">ツイートと返信</a>
+              </ul>
+              
+              
+          </nav> 
+         
+    <!--***********************ここから*************************-->
+          <%= render @posts %>
+          <!--************************ここまで*******************************-->
           
-          <p>コメント</p>
-          <%= render  @comments %>
-          <%= paginate  @comments, window: 2 %>
+          <%= paginate @posts, window: 2 %>
         <% else %>
         
           <!--記事がないときの表示-->
@@ -49,10 +55,11 @@
         <% end %>
       </div>
       
+
       <!--トレンド-->
       <div class="col-3 p-1">
         <p>アクション</p>
-        <%= render "shared/trend" %>
+        <%= render "shared/trend"%>
       </div>
     
     </div>

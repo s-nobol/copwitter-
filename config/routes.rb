@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+ 
   # 企業ポリシーページ
   get 'static_pages/home'
   get 'static_pages/about'
@@ -18,7 +19,8 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
   
   # 画像更新
-  post 'update_image', to: 'users#image'
+  post 'update_image', to: 'users#image' 
+  get 'index', to: 'comments#new'
   # ルートページ
   root 'static_pages#home'
   
@@ -32,6 +34,8 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,               only: [:show, :create, :destroy]
   resources :relationships,       only: [:create, :destroy]
+  resources :comments,            only: [:create, :destroy]
+  resources :likes,               only: [ :show, :create, :destroy]
 
 end
 
@@ -79,3 +83,10 @@ end
 # userImagerUploader作成
 # rails generate uploader Image
 # rails generate uploader BackgroundImage
+
+# いいね・コメント機能作成
+# rails g model Comment content:string user:references post:references
+# rails g controller Comments new 
+
+# rails g model Like  user:references post:references
+# rails g controller Likes 

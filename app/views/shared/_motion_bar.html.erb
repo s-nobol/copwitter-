@@ -1,6 +1,6 @@
-<div class="bg-white border border-bottom">
+<div class="bg-white border-bottom " >
   <div class="conteiner">
-    <nav class="navbar navbar-expand-sm navbar-white "> 
+    <nav class="navbar navbar-expand-lg p-0"> 
     
         <ul class="navbar-nav col-3 ">
         
@@ -12,35 +12,48 @@
           
           <li class="nav-item">
             <b><%= link_to @user.name , user_path(@user), class:"", id:"link" %></b><br>
-            
             <span>@user</span>
           </li>
         </ul>
         
         <ul class="navbar-nav col-6 ">
-          <li class="nav-item ">
-            <b><%= link_to "ツイート", @user ,class:"nav-link", id:"link" %></b>
+        
+          <!--ツイート-->
+          <li class="nav-item text-center" id="navlink" >
+            <%= link_to  @user ,class:"nav-link ", id:"link" do %>
+              <b>ツイート</b></br>
+              <b><%= @user.posts.count %></b>
+            <% end %>
           </li>
           
           <!--フォロー-->
-          <li class="nav-item ">
-            <%= link_to "フォロー #{@user.following.count}", following_user_path(@user) ,class:"nav-link text-dark"  %>
+          <li class="nav-item text-center" id="navlink">
+            <%= link_to following_user_path(@user) ,class:"nav-link" , id:"link"  do %>
+             <b>フォロー</b></br>
+             <b><%= @user.following.count %></b>
+            <% end %>
           </li>
           
           <!--フォロワー-->
-          <li class="nav-item ">
-            <%= link_to "フォロー #{@user.followers.count}", followers_user_path(@user) ,class:"nav-link text-dark"  %>
+          <li class="nav-item text-center" id="navlink">
+            <%= link_to  followers_user_path(@user) ,class:"nav-link" , id:"link"  do  %>
+              <b>フォロワー</b></br>
+              <b id="followers_count"><%= @user.followers.count %></b>
+            <% end %>
           </li>
           
           <!--いいね-->
-          <li class="nav-item">
-            <%= link_to "いいね", "#" ,class:"nav-link text-dark"  %>
+          <li class="nav-item text-center" id="navlink" >
+              <%= link_to  like_path(@user),class:"nav-link ",  id:"link" do  %>
+             <b>いいね</b></br>
+              <b id="like_count"><%= @user.likes.count %></b>
+              <% end %>
           </li>
         </ul>
         
         
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ">
+          <li class="nav-item " id="follow_form">
             <% if !current_user.nil? %>
               <% unless current_user == @user %>
                     <% if current_user.following?(@user) %>

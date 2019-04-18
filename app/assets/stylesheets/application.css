@@ -67,6 +67,9 @@
   }
   
   /*いいね・コメントボタン*/
+#fa-btn{
+  color: gray;
+  }
 .fa-heart:hover{
   color: red;
   }
@@ -88,7 +91,7 @@
 
 /*バックグランドイメージ*/
 .background_image_form{
-  height: 450px;
+  height: 400px;
   width: 100%;
   color:  gray;
   overflow: hidden;
@@ -113,6 +116,10 @@ img:hover{
 }
 #link:hover{
   color: dodgerblue;
+}
+#navlink:hover{
+  /*border-bottom-style: solid;*/
+  border-bottom-color: dodgerblue;
 }
 
 .update-button{

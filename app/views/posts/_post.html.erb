@@ -1,51 +1,73 @@
 
-<div class="  mt-2 post">
-  <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
-    
-    <!--post_nav-->
-    <ul class="navbar-nav  mr-auto">
-      <a href="#" class="nav-item">ツイート</a>
-      <a href="#" class="nav-item ml-2">ツイートと返信</a>
-    </ul>
-   
-      <!--#ドロップアウトボタン-->
-    <ul class="navbar-nav float: right">　 
-        <%= link_to "", "#", class:"nav-item fas fa-align-justify text-light", 'data-toggle': :dropdown  %>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <% if current_post?(post.user) %>
-            <li><%= link_to "削除する", post, method: :delete ,class:"dropdown-item text-danger" %></li>
-          <% end %>
-          <li><%= link_to "通報する", "#" ,class:"dropdown-item text-dark" %></li>
-        </ul>
-    </ul>
-  </nav> 
-  
-  <div class=" p-3">
-  
-      <!--User-->
-      <h6 class="font-weight-bolder"><%= image_tag("logo.png",class:"",width:"30" ,height:"30") %><%= post.user.name %> (ユーザー名)
-        <small class="text-muted"><%= post.created_at %></small>
-      </h6>
-      
-      <!--Content-->
-      <p class="text-dark"><%= post.content %></p>
-      
-      <!--画像-->
-      <%= image_tag post.picture.url if post.picture? %>
-   
-    <nav class="nav"> 
-    
-      <!--いいねボタン-->
-      <li class="nav-item text-secondary ">
-        <i class="far fa-heart"> 152</i>
-      </li>
-      
-      <!--コメントボタン-->
-      <li class="nav-item text-secondary ml-2">
-        <i class="far fa-comment-alt"> 362</i>
-      </li>
-      
-    </nav> 
-  </div>
+<div class="mb-2 post">
+    <div class="p-1">
+
+          <div class="media p-2">
+             
+              <!--ユーザー画像-->
+              <% if post.user.image.present? %>
+                  <%= image_tag(post.user.image.url, class:"rounded-circle", width:"60" ,height:"60") %>
+              <% else %>
+                  <%= image_tag("logo.png", class:"rounded-circle", width:"60" ,height:"60") %>
+              <% end %>
+                  
+              <div class="media-body ml-2">
+                
+                  <!--ユーザー名-->
+                  <h6 class="" > 
+                        <%= link_to post.user.name, user_path(post.user), class:"text-dark" %>
+                        <small class="text-muted"><%= post.created_at %></small>
+                        <%= "post.id : #{post.id}" %>
+                  </h6>          
+                    
+                  <%= link_to post_path(post),class:"text-dark text-decoration-none" do %>
+                    <div>
+                      <!--記事内容-->
+                      <tx class=""><%= post.content %></tx>  
+                      
+                      <!--画像-->
+                      <%= image_tag post.picture.url if post.picture? %>
+                    </div>
+                  <% end %>
+               
+               
+                <nav class="nav mt-2"> 
+                  <!--コメントボタン-->
+                      <li class="nav-item ml-2">
+                          <%= link_to post_path(post),class:" btn p-0" do %>
+                            <i class="far fa-comment-alt" id="fa-btn"> <span><%= post.comments.count %></span></i>
+                          <% end %>
+                      </li>
+                    
+                    <!--いいねボタン-->
+                    <li class="nav-item ml-2" id="like_post_<%= post.id %>">
+                        <% if @like = current_user.likes.find_by(post: post ) %>
+                          <%= render "likes/unlike" , post: post %>
+                        <% else %>
+                          <%= render "likes/like", post: post %>
+                        <% end %>
+                    </li>
+                    
+                    
+                </nav> 
+            </div>
+              
+              
+             <!--#ドロップアウトボタン-->     
+              <nav class="nav p-0"> 
+                  <ul class="nav-item float: right">　 
+                    <%= link_to "", "#", class:" fas fa-angle-down text-light ", 'data-toggle': :dropdown %>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <% if current_post?(post.user) %>
+                        <li><%= link_to "削除する", post, method: :delete ,class:"dropdown-item text-danger" %></li>
+                      <% end %>
+                      <li><%= link_to "通報する", "#" ,class:"dropdown-item text-dark" %></li>
+                    </ul>
+                </ul>
+              </nav> 
+              
+          </div>
+          
+    </div>
 </div>
 

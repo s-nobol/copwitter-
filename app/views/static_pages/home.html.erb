@@ -6,14 +6,19 @@
 
 <% if !current_user.nil? %>
 
-      <!--ユーザーイメージ-->
-    <div class="bg-image">
-      <div class="conteiner"> 
-        <h1>Users#show</h1>
-        <p>Find me in app/views/users/show.html.erb</p>
-        <h1 class=" bg-gray text-center">ユーザーホーム画像</h1>
+     <!--ユーザーイメージ-->
+      <div class="background_image_form">
+        <!--// 画像があるときは画像を表示する-->
+          <% if @user.background_image.present? %>
+            <%= image_tag(@user.background_image.url , class:"w-100 ", ) %>
+          <% else %>
+            <div class="conteiner"> 
+              <h1>Users#show</h1>
+              <p>Find me in app/views/users/show.html.erb</p>
+              <h1 class=" bg-gray text-center">ユーザーホーム画像</h1>
+            </div>
+          <% end %>
       </div>
-    </div>
     
     <!--モーションバー-->
     <%= render "shared/motion_bar"%>
@@ -48,18 +53,9 @@
           <!--トレンド-->
           <div class="col-3 p-1">
             <p>アクション</p>
-            <div class="bg-white p-2">
-              <h5>ツイッターを使ってみよう</h5>
-              <span class="text-muted">登録してあなただけのタイムラインを作りましょう</span>
-              <p><%=  link_to "サインアップ", new_user_path, class:"btn btn-primary mx-auto"%></p>
-            </div>
-            
-            <div class=" bg-white p-2">
-              <h5>トレンド</h5>
-              <span class="text-muted">世界で人気の記事ですみんなでシェアしましょう</span>
-            </div>
+            <%= render "shared/trend" %>
           </div>
-        
+           
         </div>
       </div>
     </div>

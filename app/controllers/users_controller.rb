@@ -94,6 +94,7 @@ class UsersController < ApplicationController
     render 'index'
   end
   
+  
   private
     def user_params
        params.require(:user).permit(:name, :email, :password)
@@ -103,11 +104,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:image, :background_image)
     end
     
-     # 正しいユーザーかどうか確認
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless @user == current_user
-    end
     
     # もし画像がなければもとに戻す
     def no_image

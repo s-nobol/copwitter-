@@ -22,9 +22,10 @@ class PostsController < ApplicationController
   end
   
   def show
-    @posts = Post.find(params[:id])
-    @user = User.find(@posts.user_id)
-    #まだ作成中@comments = @post.comments.page(params[:page]).per(10)
+    @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments.page(params[:page]).per(10)
+    @user = User.find(@post.user_id)
   end
   
   

@@ -1,0 +1,2 @@
+$("#like_post_<%= @post.id %>").html('<%= escape_javascript(render("likes/unlike", post: @post  )) %>');
+<!--$("#like_count").html('<%#= @user.likes.count %>');-->

@@ -1,0 +1,4 @@
+<!--いいね削除ボタン-->
+<%= link_to like_path(@like) ,class:"text-danger  btn p-0", method: :delete , remote: true do%>
+  <i class="far fa-heart" > <%= post.likes.count %></i>
+<% end %>

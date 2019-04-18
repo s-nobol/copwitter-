@@ -4,7 +4,7 @@
     
         <ul class="navbar-nav  mr-auto">
         
-            <li class="navbar-brand" id="link" >
+            <li class="navbar-item" id="link" >
               <%= link_to (static_pages_home_path),id:"link"  do %>
                 <%= image_tag("logo.png", alt: "tweet_app logo", class:"" ,width:"40" ,height:"40") %>  
               
@@ -18,7 +18,7 @@
             
             
                 <!--#ドロップアウトボタンの追加-->
-                  <li class="navbar-brand" data-toggle="dropdown"  >  
+                  <li class="navbar-item" data-toggle="dropdown"  >  
                     
                       <% if current_user.image.present? %>
                         <%= image_tag(current_user.image.url, class:"rounded-circle p-1", width:"40" ,height:"40") %>

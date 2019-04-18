@@ -18,7 +18,6 @@ end
 
 class ActionDispatch::IntegrationTest
 
-  
   # テストユーザーとしてログインする
   def login_as(user, password: 'password')
     post login_path, params: { session: { email: user.email,
