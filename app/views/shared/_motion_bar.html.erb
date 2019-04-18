@@ -44,7 +44,7 @@
           
           <!--いいね-->
           <li class="nav-item text-center" id="navlink" >
-              <%= link_to  like_path(@user),class:"nav-link ",  id:"link" do  %>
+              <%= link_to like_path(@user),class:"nav-link ",  id:"link" do  %>
              <b>いいね</b></br>
               <b id="like_count"><%= @user.likes.count %></b>
               <% end %>
