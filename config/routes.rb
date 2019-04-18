@@ -84,10 +84,13 @@ end
 # rails generate uploader Image
 # rails generate uploader BackgroundImage
 
-# いいね・コメント機能作成
+# コメント機能作成
 # rails g model Comment content:string user:references post:references
 # rails g controller Comments new 
 
+# いいね機能作成
 # rails g model Like  user:references post:references
 # rails g controller Likes 
+
+# Hrokuエラー発生　migrationファイル drpo_table :statuses 削除
 
