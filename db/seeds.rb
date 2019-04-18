@@ -33,3 +33,7 @@ following = users[2..10]
 followers = users[3..10]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# いいね
+post = Post.last
+Like.create(user: user, post: post)

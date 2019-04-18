@@ -1,9 +1,37 @@
 <!--ユーザープロフィールページ-->
-<div class="bg-white p-3 mb-2">
-  <h6 class="font-weight-bolder">
-          <%= image_tag("logo.png",class:"",width:"30" ,height:"30") %><%= user.name %> (ユーザー名)
-          <small class="text-muted"><%= user.created_at %></small>
-  </h6>
-  <p>メール：<%= user.email %></p>
+<!--<div class="bg-white p-3 mb-2">-->
+<!--  <h6 class="font-weight-bolder">-->
+<!--          <%#= image_tag("logo.png",class:"",width:"30" ,height:"30") %><%#= user.name %> (ユーザー名)-->
+<!--          <small class="text-muted"><%#= user.created_at %></small>-->
+<!--  </h6>-->
+<!--  <p>メール：<%#= user.email %></p>-->
   <!--<p class="text-break">パスワード：<%#= user.password_digest %></p>-->
-</div>
+<!--</div>-->
+
+<!--ユーザーコメント-->
+<div class="media bg-white p-3 mb-1">
+    
+    <!--ユーザー画像-->
+    <% if user.image.present? %>
+        <%= image_tag(user.image.url, class:"rounded-circle", width:"40" ,height:"40") %>
+    <% else %>
+        <%= image_tag("logo.png", class:"rounded-circle", width:"40" ,height:"40") %>
+    <% end %>
+      
+    <div class="media-body ml-2">
+      <h6 class="mt-0" > 
+      
+        <!--ユーザー名-->
+        <%= link_to user.name, user_path(user) , class:"text-dark" %>
+        <small class="text-muted"><%= user.created_at %></small>
+        
+        <%= "user_id : #{user.id} " %>
+        
+       
+      </h6>
+      
+     <tx class="">メール：<%= user.email %></tx> </br> 
+     <tx class="">つぶやき</tx>  
+
+    </div>
+ </div>

@@ -95,3 +95,5 @@ end
 # Hrokuエラー発生　migrationファイル drpo_table :statuses 削除
 # Hrokuエラー発生　migrationファイル add_column :statuses, :user_id, :string を削除
 
+# like機能が消えたので再生成
+# rails d model Like

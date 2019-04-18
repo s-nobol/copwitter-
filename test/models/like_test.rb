@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class LikeTest < ActiveSupport::TestCase
-  def setup
+   def setup
     @user = users(:first_user)
     @post = posts(:first_post)
     # @like = @post.likes(user: @user)
@@ -28,6 +28,5 @@ class LikeTest < ActiveSupport::TestCase
     @like2 = Like.new(user: @user, post: @post)
     assert_not @like2.valid? , "like_save #{@like2.save}"
   end
-  
   
 end
