@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   # 画像更新
   post 'update_image', to: 'users#image' 
   get 'index', to: 'comments#new'
+  
+  # 検索
+  get 'search', to: 'posts#search'
   # ルートページ
   root 'static_pages#home'
   
@@ -102,5 +105,5 @@ end
 # git checkout -b static_pages
 
 # フラッシュの作成、検索機能、トレンド一覧
-# railsで検索フォームを作ろう
+# railsで検索フォームを作ろうsearch]
 # Railsでお手軽ランキング機能

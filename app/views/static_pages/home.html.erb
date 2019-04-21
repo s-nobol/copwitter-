@@ -24,7 +24,7 @@
     <%= render "shared/motion_bar"%>
     
     <!--メインView-->
-    <div class=" background">
+    <div class=" background pb-5">
       <div class="conteiner"> 
         <div class="row "> 
           
@@ -32,7 +32,7 @@
           <div class="col-3 p-2">
           
             <p>ユーザーステータス</p>
-            <%#= render "posts/post_form" %>
+            <%= render "posts/post_form" %>
             <%= render "shared/user_status" %>
           </div>
           
@@ -40,6 +40,15 @@
           <div class="col-6 p-1">
             <p>記事</p>
             <% if @posts.any? %>
+                <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
+                    <!--post_nav-->
+                    <ul class="navbar-nav  mr-auto ">
+                      <h5><b><%= link_to "ツイート", user_path(@user) ,class:"nav-item mr-3 ml-3" %></b></h5>
+                      <div><%= link_to "ツイートと変身", user_path(@user) ,class:"nav-item" %></div>
+                    </ul>
+                </nav> 
+          
+              <!--記事一覧-->
               <%= render @posts %>
               <%= paginate @posts, window: 2 %>
             <% else %>
@@ -61,8 +70,9 @@
     </div>
   
 <% else %>
-<div class="h-100 w-100 bg-blue">
-     <div class="w-100 row h-100 m-0">
+<div class="h-100 w-100 bg-blue m-0">
+
+     <div class="row h-100 m-0">
         <div class="col-6 h-100 text-white" >
           <div class="col-10 m-auto">
             <h1 class="mt-5"><b>ツイートアップへようこそ</b></h1>
@@ -75,10 +85,10 @@
           <div class="col-md-6 m-auto h-100 ">
             <div class="mt-5 ">
                 
-                サインアップ、ログインフォーム
-                <div class="mt-5"><%= image_tag("logo.png", class:"rounded-circle", width:"50" ,height:"50") %></div>
+                
+                <div class="mt-5"><%= image_tag("logo.png", class:"rounded-circle mt-5", width:"50" ,height:"50") %></div>
                 <h3><b>「いま」起きていることを見つけよう</b></h3>
-                <h5 class="mt-4 mb-3"><b>Twitterをはじめよう</b></h5>
+                <h5 class="mt-4 mb-3"><b>Copwitterをはじめよう</b></h5>
                 <div class="mt-2">
                   <%= link_to "サインアップする", signup_path, class:"btn btn-primary btn-block rounded-pill"  %>
                 </div>
@@ -91,19 +101,30 @@
         </div>
       </div>
   </div>
-  
-  <fotter>
-       <div id="nav-fotter">
-           <nav class="nav navbar bg-white p-0" >
-             <%= link_to "twetterについて" ,static_pages_about_path ,class:"nav-link",id:"link"  %>           
-            <%= link_to "ヘルパー" , static_pages_hepl_path  ,class:"nav-link",id:"link"  %>
-            <%= link_to "プライバシーポリシー" , static_pages_policy_path ,class:"nav-link",id:"link"  %>
-            <%= link_to "企業理念" , static_pages_corporate_path ,class:"nav-link",id:"link"  %>
-            <%= link_to "利用規約" , static_pages_agreement_path ,class:"nav-link",id:"link"  %>
-            
-          </nav>
+  <footer class="bg-light">
+       <div class="" id="nav-fotter">
+           <div class="conteiner">
+                
+                <ul class="nav">
+                  <li class="nav-item">
+                    <%= link_to "twetterについて" ,static_pages_about_path ,class:"nav-link",id:"link"  %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ヘルパー" , static_pages_hepl_path  ,class:"nav-link",id:"link"  %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "プライバシーポリシー" , static_pages_policy_path ,class:"nav-link",id:"link"  %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "企業理念" , static_pages_corporate_path ,class:"nav-link",id:"link"  %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "利用規約" , static_pages_agreement_path ,class:"nav-link",id:"link"  %>
+                  </li>
+                </ul>
+          </div>
         </div>
-  </fotter>
+  </footer>
     
     <style> 
         html{
@@ -111,14 +132,27 @@
         }
    
         body{
-          height: 90%;
+          height: 100%;
         }
-        #nav-fotter{
-          position: fixed;
-          margin: 0;
-          z-index: 10;
-          bottom: 0x;
-          left: 0;
-        } 
+        /*header{*/
+        /*  position: fixed;*/
+        /*  margin: 0px;*/
+        /*  z-index: 10;*/
+        /*  width: 100%;*/
+        /*  top: 0;*/
+        /*  left: 0;*/
+        /*  }*/
+          
+          footer{
+            position: fixed;
+            z-index: 10;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            margin: 0px;
+          }
+        
+        
+        
     </style>
 <% end %>

@@ -1,0 +1,15 @@
+<!--もしログインしてなかったら表示-->
+<div class="mb-2">
+  <% if current_user.nil? %>
+    <div class="bg-white p-2 ">
+    
+      <h5><b>コピイッターを使ってみよう</b></h5>
+      <span class="text-muted">登録してあなただけのタイムラインを作りましょう</span>
+      
+      <div class="text-center p-3">
+              <%= link_to "サインアップ", new_user_path, class: "btn btn-primary  rounded-pill pr-3 pl-3" %>
+      </div>
+      
+    </div>
+  <% end %>
+</div>

@@ -1,7 +1,7 @@
 <header class="bg-white ">
   <div id="header">
   <div class="conteiner">
-    <nav class="nav navbar-expand-lg navbar-white">
+    <nav class="nav navbar-expand-sm navbar-white">
     
         <ul class="navbar-nav  mr-auto">
         
@@ -9,16 +9,23 @@
               <%= link_to (static_pages_home_path),id:"link"  do %>
                 <%= image_tag("logo.png", alt: "tweet_app logo", class:"" ,width:"30" ,height:"30") %>  
               
-                <span id="link" >twitter</span>
+                <span id="link" >copwitter</span>
               <% end %>  
             </li>
         </ul>
         
         <ul class="navbar-nav justify-content-end ">　
-            <% if !current_user.nil?  %>
             
-            
+              <!--検索フォーム-->
+                 <%= form_tag(search_path,:method => 'get' , class:" m-auto pr-3") do %>
+                  <%= text_field_tag :search ,:"", class: "text-muted border rounded-pill p-1", placeholder: "検索"%>
+                  <%#= submit_tag 'Search', :name => nil %>
+                <% end %>
+             
+                    
+        
                 <!--#ドロップアウトボタンの追加-->
+              <% if !current_user.nil?  %>
                   <li class="nav-link p-1" data-toggle="dropdown"  >  
                     
                       <% if current_user.image.present? %>
@@ -43,8 +50,6 @@
                 </ul>
                   
             <% else %>
-                <%= link_to "ホーム", static_pages_home_path ,class:"nav-link p-2" ,id:"link" %>
-                <%= link_to "about", static_pages_about_path ,class:"nav-link p-2" ,id:"link" %>
                 <%= link_to "新規登録", signup_path ,class:"nav-link p-2" ,id:"link" %>
                 <%= link_to "ログイン", login_path ,class:"nav-link p-2" ,id:"link" %>      
             <% end %>

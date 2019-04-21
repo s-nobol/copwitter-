@@ -5,9 +5,9 @@
         <!--エラーメッセージ-->
         <%= render 'shared/error_messages', object: f.object %>
         
-        <!--テキストフィールド-->
-        <%= f.text_field :content, class: 'form-control ', id:"exampleFormControlTextarea1" %>
-        
+        <!--テキストフィールド-class: 'form-control ', id:"exampleFormControlTextarea1" %>->-->
+        <%= f.text_area :content, class: 'border w-100 p-1',"rows" => 3 , placeholder: "コメントを入力して下さい" %>
+       
         <!--送信ボタン-->
         <div class="text-right">
           <%= f.submit "コメント送信", class: "btn btn-primary  mt-3" %>

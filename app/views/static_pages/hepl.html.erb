@@ -1,6 +1,6 @@
 
 <div class="bg-blue p-5">
-  <h1 class="text-white text-center mt-5 mb-5"><b>Twitter hepler</b></h1>
+  <h1 class="text-white text-center mt-5 mb-5"><b>Copwitter hepler</b></h1>
 </div>
 
 
@@ -8,17 +8,11 @@
    <div class="container">
        <div class="row"> 
           <div class="col-4"> 
-            <p><b>1. 本サービスを利用できる人</b></p>
-            <p><b>2. プライバシー</b></p>
-            <p><b>3. 本サービス上のコンテンツ</b></p>
-            <p><b>4. 本サービスの利用 </b></p>
-            <p><b>5. 責任の制限 </b></p>
-            <p><b>6. 一般条件</b></p>
+ 
           </div>
           
           
           <div class="col-8"> 
-          <p>ヘルパー</p>
            </div>
       </div>
   </div>
@@ -29,11 +23,14 @@
       <div class="w-50 m-auto">
         <textarea class="w-100 mt-3 mb-3"  cols="40" rows="8">  </textarea>
         <div class="text-right">
-          <button class="btn btn-primary rounded-pill pl-5 pr-5">送信</button>
+          <%= link_to "送信", static_pages_hepl_path, class:"btn btn-primary rounded-pill pl-5 pr-5"%>
+          <!--<button class=""></button>-->
         </div>
       </div>
   </div>
 </div>
+
+<%= render "layouts/footer2" %>
 
 <style>
     h1{

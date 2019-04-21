@@ -1,0 +1,70 @@
+
+<!--検索した単語 -->
+
+<div class="bg-light p-3" >
+  <div class="conteiner">
+    <h3><b>検索</b>：<b><%= @search %></b></h3>
+  </div>
+</div>
+
+<!--なんだかわからないbar-->
+<div>
+  <div class="conteiner">
+    <nav class="nav p-2">
+     
+      <a class="nav-link text-dark" href="#" id="link">検索結果：<%= @posts.count %>件該当</a>
+      <a class="nav-link" href="#"  id="link" >人気の記事一覧</a>
+    </nav>
+  </div>
+</div>
+  <!--メインView-->
+<div class=" background">
+  <div class="conteiner"> 
+    <div class="row "> 
+      
+      <!--ユーザーステータス-->
+      <div class="col-3 p-2">
+        <p>トレンド</p>
+        <%= render "shared/trend"%>
+      </div>
+      
+      <!--記事-->
+      <div class="col-6 p-1">
+        <p>記事</p>
+        <% if @posts.any? %>
+          <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
+              <ul class="navbar-nav  mr-auto">
+              <h5><b>記事の一覧</b></h5>
+                <!--<a href="#" class="nav-item">ツイート</a>-->
+                <!--<a href="#" class="nav-item ml-2">ツイートと返信</a>-->
+              </ul>
+          </nav> 
+                
+          <%= render @posts %>
+          <%= paginate @posts, window: 2 %>
+        <% else %>
+        
+          <!--記事がないときの表示-->
+          <div class="border border-white bg-white mt-2">
+  
+            <div class=" p-5">
+            
+                <h3 class="text-center" >該当する記事が見当たりませんでした</h3>
+               <p class="text-center">再度検索してみてください</p>
+              
+            </div>
+          </div>
+        <% end %>
+      </div>
+      
+
+      <!--トレンド-->
+      <div class="col-3 p-1">
+        <p>アクション</p>
+        <!--もしログインしてなかったら表示-->
+        <%= render "shared/user_signup"%>
+      </div>
+    
+    </div>
+  </div>
+</div>

@@ -32,7 +32,13 @@
       
       <!--記事-->
       <div class="col-6 p-1">
-        <p>フォロワー<%= @title %></p>
+        <p>フォロー</p>
+         <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
+            <!--post_nav-->
+            <ul class="navbar-nav  mr-auto">
+              <h5><b><%= @title %></b></h5>
+            </ul>
+        </nav> 
         <%= render @users %>
         <%= paginate @users, window: 2 %>
       </div>
@@ -40,16 +46,8 @@
       <!--トレンド-->
       <div class="col-3 p-1">
         <p>アクション</p>
-        <div class="bg-white p-2">
-          <h5>ツイッターを使ってみよう</h5>
-          <span class="text-muted">登録してあなただけのタイムラインを作りましょう</span>
-          <p><%=  link_to "サインアップ", new_user_path, class:"btn btn-primary mx-auto"%></p>
-        </div>
-        
-        <div class=" bg-white p-2">
-          <h5>トレンド</h5>
-          <span class="text-muted">世界で人気の記事ですみんなでシェアしましょう</span>
-        </div>
+        <%#= render "shared/user_signup"%>
+        <%= render "shared/trend"%>
       </div>
     
     </div>

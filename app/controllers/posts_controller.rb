@@ -28,6 +28,12 @@ class PostsController < ApplicationController
     @user = User.find(@post.user_id)
   end
   
+  def search
+    @search = params[:search]
+    @posts = Post.search(@search).page(params[:page]).per(6)
+    # @posts = Post.where(['content LIKE ?', "%#{@search}%"]).page(params[:page]).per(6)
+  end
+  
   
   private
   

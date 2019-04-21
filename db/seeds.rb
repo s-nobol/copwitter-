@@ -36,15 +36,12 @@ followers.each { |follower| follower.follow(user) }
 
 
 # コメント（5個）
-# posts = Post.all.take(5)
-# 5.times do |n|
-#   posts.each do |post|
-#       user.comments.create!(post: post)
-#   end
-# end
+
+5.times do |n|
+  posts = Post.all.take(5-n)
+  posts.each do |post|
+      users[n].comments.create!(content: "テストコメント#{n}", post: post)
+      users[n].likes.create!(post: post)
+  end
+end
   
-
-
-# いいね（10個　9.8.7..2.1）
-post = Post.last
-Like.create(user: user, post: post)

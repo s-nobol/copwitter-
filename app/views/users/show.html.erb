@@ -18,14 +18,14 @@
 
   
   <!--メインView-->
-<div class=" background">
+<div class=" background pb-5">
   <div class="conteiner"> 
     <div class="row "> 
       
       <!--ユーザーステータス-->
       <div class="col-3 p-2">
         <p>ユーザーステータス</p>
-        <%= render "posts/post_form" %>
+        <%#= render "posts/post_form" %>
         <%= render "shared/user_status" %>
       </div>
       
@@ -34,14 +34,11 @@
         <p>記事</p>
         <% if @posts.any? %>
           <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
-      
               <!--post_nav-->
-              <ul class="navbar-nav  mr-auto">
-                <a href="#" class="nav-item">ツイート</a>
-                <a href="#" class="nav-item ml-2">ツイートと返信</a>
+              <ul class="navbar-nav  mr-auto ">
+                <h5><b><%= link_to "ツイート", user_path(@user) ,class:"nav-item mr-3 ml-3" %></b></h5>
+                <div><%= link_to "ツイートと変身", user_path(@user) ,class:"nav-item" %></div>
               </ul>
-              
-              
           </nav> 
                 
           <%= render @posts %>
@@ -57,9 +54,22 @@
       <!--トレンド-->
       <div class="col-3 p-1">
         <p>アクション</p>
+        <%= render "shared/user_signup"%>
         <%= render "shared/trend"%>
       </div>
     
     </div>
   </div>
 </div>
+
+ <style>
+ 
+       header{
+          position: fixed;
+          margin: 0px;
+          z-index: 10;
+          width: 100%;
+          top: 0;
+          left: 0;
+          }
+ </style>

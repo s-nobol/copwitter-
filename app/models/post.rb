@@ -8,12 +8,16 @@ class Post < ApplicationRecord
   validates :user_id ,presence: true
   validate :picture_size
   
-  
   # いいねの記事を多い順でとってくる
   # def trend_feed
   #   @all_ranks = Note.find(Like.group(:note_id).order('count(note_id) desc').limit(3).pluck(:note_id)
   #   @post = Post.find(Like.group(:post_id).order('count(post_id) desc')).limit(5).pluck(:post_id) # ← 自作
   # end
+  
+  def self.search(search_text)
+      return Post.all unless search_text
+      Post.where(['content LIKE ?', "%#{search_text}%"])
+  end
   
   private 
     # アップロードされた画像のサイズをバリデーションする

@@ -25,13 +25,15 @@
     
     <!--フラッシュ-->
    
+      
     <% flash.each do |message_type, message| %> 
-      <div class="m-0 p-2 alert alert-<%= message_type%> border border-<%= message_type%>"> 
-          <div class="conteiner">
-            <%= message_type%> : <%= message %> 
-          </div>
-      </div>
+        <div class="m-0 p-2 alert alert-<%= message_type%> border border-<%= message_type%>"> 
+            <div class="conteiner">
+              <%= message_type%> : <%= message %> 
+            </div>
+        </div>
     <% end %>
+    
     
       
     
@@ -39,7 +41,7 @@
     <%= yield %>
     
     <!--フッター-->
-    <%= render "layouts/footer" %>
+    <%#= render "layouts/footer" %>
    
   </body>
 </html>

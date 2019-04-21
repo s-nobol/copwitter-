@@ -24,14 +24,13 @@
         <!--ユーザー名-->
         <%= link_to user.name, user_path(user) , class:"text-dark" %>
         <small class="text-muted"><%= user.created_at %></small>
-        
-        <%= "user_id : #{user.id} " %>
-        
-       
+        <%#= "user_id : #{user.id} " %>
       </h6>
       
-     <tx class="">メール：<%= user.email %></tx> </br> 
-     <tx class="">つぶやき</tx>  
+       <tx class="">メール：<%= user.email %></tx> </br> 
+        <span class="d-inline-block text-truncate text-muted" style="max-width: 150px;">
+          ひとこと：<%= user.message  %>
+        </span>
 
     </div>
  </div>

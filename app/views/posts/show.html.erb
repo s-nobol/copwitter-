@@ -17,7 +17,7 @@
 <%= render "shared/motion_bar"%>
 
 
-<div class=" background">
+<div class=" background pb-5">
   <div class="conteiner"> 
   
     <!--メインView-->
@@ -39,9 +39,12 @@
             <%= render "comments/comment_form"%>
           </div>
           
-          <p>コメント</p>
-          <%= render  @comments %>
-          <%= paginate  @comments, window: 2 %>
+            <% if @comments.any?  %>
+              <p class="mt-3">コメント</p>
+            <% end %>
+            <%= render  @comments %>
+            <%= paginate  @comments, window: 2 %>
+         
         <% else %>
         
           <!--記事がないときの表示-->
@@ -52,7 +55,8 @@
       <!--トレンド-->
       <div class="col-3 p-1">
         <p>アクション</p>
-        <%= render "shared/trend" %>
+        <%= render "shared/user_signup"%>
+        <%= render "shared/trend"%>
       </div>
     
     </div>
