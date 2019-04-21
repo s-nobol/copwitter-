@@ -11,15 +11,15 @@ class SessionsController < ApplicationController
           
         login_session(@user)
         login_cookies(@user)
-        flash[:notice] = "ログインしました"
+        flash[:info] = "ログインしました"
         redirect_to @user
       else
         message  = "アカウントが有効になっていませんメールを確認してください"
-        flash[:notice] = message
+        flash[:danger] = message
         redirect_to login_path
       end
     else
-      flash[:notice] = "メールまたわパスワードが間違っています"
+      flash[:danger] = "メールまたわパスワードが間違っています"
       render "new"
     end
   end
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   def destroy
     logout if current_user #ログインしてたら実行しないようにする
     
-    flash[:notice] = "ログアウトしました"
+    flash[:info] = "ログアウトしました"
     redirect_to login_path
   end
 end

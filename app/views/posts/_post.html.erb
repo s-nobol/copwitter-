@@ -41,10 +41,16 @@
                     
                     <!--いいねボタン-->
                     <li class="nav-item ml-2" id="like_post_<%= post.id %>">
-                        <% if @like = current_user.likes.find_by(post: post ) %>
-                          <%= render "likes/unlike" , post: post %>
+                       <% if !current_user.nil? %>
+                          <% if @like = current_user.likes.find_by(post: post ) %>
+                            <%= render "likes/unlike" , post: post %>
+                          <% else %>
+                            <%= render "likes/like", post: post %>
+                          <% end %>
                         <% else %>
-                          <%= render "likes/like", post: post %>
+                          <%= link_to "#" do%>
+                           <i class="far fa-heart btn" id="fa-btn"> <%= post.likes.count %></i>
+                           <% end %>
                         <% end %>
                     </li>
                     

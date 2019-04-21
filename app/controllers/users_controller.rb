@@ -31,11 +31,11 @@ class UsersController < ApplicationController
         @user.create_activation_digest
         UserMailer.activation(@user).deliver_now
         
-        flash[:notice] = "メールを送信しました #{ edit_activation_url(@user.activation_token, email: @user.email)}"
+        flash[:info] = "メールを送信しました #{ edit_activation_url(@user.activation_token, email: @user.email)}"
         wants.html { redirect_to(root_path) }
         wants.xml  { render :xml => @user, :status => :created, :location => @user }
       else
-        flash[:notice] = "ユーザー作成できません"
+        flash[:danger] = "ユーザー作成できません"
         wants.html { render :action => "new" }
         wants.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     
     respond_to do |wants|
       if @user.update_attributes(user_params)
-        flash[:notice] = "編集しました　#{ params[:user] } ステータス#{ params[:status]}"
+        flash[:success] = "ユーザー情報を編集しました"
         wants.html { redirect_to(@user) }
         wants.xml  { head :ok }
       else
@@ -71,10 +71,10 @@ class UsersController < ApplicationController
   # もしクライアントユーザーでなかったらはじく
   def image
     if current_user.update_attributes(image_params)
-      flash[:notice] = "画像を更新しました"
+      flash[:success] = "画像を更新しました"
       redirect_to edit_user_path(current_user)
     else
-      flash[:notice] = "画像を更新できませんでした"
+      flash[:success] = "画像を更新できませんでした"
       redirect_to edit_user_path(current_user)
     end
   end
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
   
   private
     def user_params
-       params.require(:user).permit(:name, :email, :password)
+       params.require(:user).permit(:name, :email, :password, :message, :address, :link, :barthday)
     end
 
     def image_params
@@ -108,7 +108,7 @@ class UsersController < ApplicationController
     # もし画像がなければもとに戻す
     def no_image
       unless params[:user] 
-        flash[:notice] = "画像が挿入されていません"
+        flash[:danger] = "画像が挿入されていません"
         redirect_to edit_user_path(current_user)
       end
     end

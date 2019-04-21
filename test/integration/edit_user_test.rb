@@ -29,8 +29,9 @@ class EditUserTest < ActionDispatch::IntegrationTest
                                               link: "test.com" , barthday: "1/25" } }
     assert_redirected_to @user
     follow_redirect!
+    assert_template "users/show"
     assert_match name, response.body
-    assert_match email, response.body
+    assert_match address, response.body
     
     @user.reload
     assert_equal name, @user.name

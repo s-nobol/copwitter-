@@ -17,7 +17,9 @@
 /*@import "bootstrap";*/
 
 /*applicationのcss*/
-
+body{
+  margin: 0px;
+  }
 .conteiner{
   width: 75%;
   margin: auto;
@@ -30,14 +32,6 @@
 .background{
   background-color: rgba(120, 130, 130, 0.1);
 }
-/*ボタン、チェックボックスのcss*/
-/*.btn-color{*/
-/*  padding: 8px 25px;*/
-/*  color: white;*/
-/*  background-color: deepskyblue;*/
-/*  border-color: deepskyblue;*/
-/*  border-radius:  5px;*/
-/*  }*/
 
 /*follow-ボタン*/
   .follow-btn{
@@ -91,7 +85,7 @@
 
 /*バックグランドイメージ*/
 .background_image_form{
-  height: 400px;
+  height: 420px;
   width: 100%;
   color:  gray;
   overflow: hidden;
@@ -124,7 +118,7 @@ img:hover{
 
 .update-button{
   position: absolute;
-  top: 430px;
+  top: 400px;
   right: 130px;
   z-index: 10;
 }

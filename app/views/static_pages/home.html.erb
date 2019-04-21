@@ -61,9 +61,64 @@
     </div>
   
 <% else %>
-  <div class="conteiner">
-    <h1>StaticPages#home</h1>
-    <p>Find me in app/views/static_pages/home.html.erb</p>
-    <p>これはルートページです</p>
+<div class="h-100 w-100 bg-blue">
+     <div class="w-100 row h-100 m-0">
+        <div class="col-6 h-100 text-white" >
+          <div class="col-10 m-auto">
+            <h1 class="mt-5"><b>ツイートアップへようこそ</b></h1>
+            <h3><b>サインアップしてツイートに参加しましょう</b></h3>
+          </div>
+        </div>
+        
+        
+        <div class="col-6 bg-white h-100"  >
+          <div class="col-md-6 m-auto h-100 ">
+            <div class="mt-5 ">
+                
+                サインアップ、ログインフォーム
+                <div class="mt-5"><%= image_tag("logo.png", class:"rounded-circle", width:"50" ,height:"50") %></div>
+                <h3><b>「いま」起きていることを見つけよう</b></h3>
+                <h5 class="mt-4 mb-3"><b>Twitterをはじめよう</b></h5>
+                <div class="mt-2">
+                  <%= link_to "サインアップする", signup_path, class:"btn btn-primary btn-block rounded-pill"  %>
+                </div>
+                <div class="mt-2">
+                  <%= link_to "ログインする", login_path, class:"btn  btn-outline-primary btn-block rounded-pill"  %>
+                </div>
+            
+              </div>
+            </div>
+        </div>
+      </div>
   </div>
+  
+  <fotter>
+       <div id="nav-fotter">
+           <nav class="nav navbar bg-white p-0" >
+             <%= link_to "twetterについて" ,static_pages_about_path ,class:"nav-link",id:"link"  %>           
+            <%= link_to "ヘルパー" , static_pages_hepl_path  ,class:"nav-link",id:"link"  %>
+            <%= link_to "プライバシーポリシー" , static_pages_policy_path ,class:"nav-link",id:"link"  %>
+            <%= link_to "企業理念" , static_pages_corporate_path ,class:"nav-link",id:"link"  %>
+            <%= link_to "利用規約" , static_pages_agreement_path ,class:"nav-link",id:"link"  %>
+            
+          </nav>
+        </div>
+  </fotter>
+    
+    <style> 
+        html{
+          height: 100%;
+        }
+   
+        body{
+          height: 90%;
+        }
+        #nav-fotter{
+          position: fixed;
+          margin: 0;
+          z-index: 10;
+          bottom: 0x;
+          left: 0;
+        } 
+    </style>
 <% end %>

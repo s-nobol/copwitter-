@@ -2,3 +2,24 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+
+.bg-blue{
+  background-color: deepskyblue;
+  /*background-color: cornflowerblue;*/
+  /*background-color: dodgerblue;*/
+  }
+  
+.text-blue{
+  color: deepskyblue;
+  /*color: dodgerblue;*/
+}
+
+.bg-purple{
+  /*background-color: mediumorchid;*/
+  background-color: darkorchid;
+  /*background-color: slateblue;*/
+  }
+.text-purple{
+  color: darkorchid;
+  }

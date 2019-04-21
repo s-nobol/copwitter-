@@ -1,10 +1,12 @@
 
 <!--ユーザープロフィールページ-->
 <div class="">
-  <p>ID：<%= link_to @user.id, @user %></p>
-  <p>名前：<%= link_to @user.name, @user %></p>
-  <p>メール：<%= @user.email %></p>
+  <div>ID：<%= link_to @user.id, @user %></div>
+  <div>名前：<%= link_to @user.name, @user %></div>
+  <div>メール：<%= @user.email %></div>
 </div>
 
-<!--何回も呼び出すのはナンセンス　@statusに統一すべき-->
-<p>まだユーザーステータスが入力されていません</p>
+<div><%= @user.message? ? "ひとこと : #{@user.message}" : "まだメッセージが入力されていません" %></div>
+<div><%= @user.address? ? "住所 : #{@user.address}" : "" %></div>
+<div><%= @user.link? ? "LINK: #{@user.link}" : "" %></div>
+<div><%= @user.barthday? ? "誕生日 : #{@user.barthday}" : "" %></div>

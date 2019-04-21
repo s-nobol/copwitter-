@@ -13,19 +13,19 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(content: params[:comment][:content] , user: current_user)
     
     if @comment.save
-      flash[:notice] = "コメント投稿しました"
+      flash[:success] = "コメント投稿しました"
       redirect_to post_path(@post)
     else
       @user = @post.user
       @comments = @post.comments.page(params[:page]).per(10)
-      flash[:notice] = "投稿できません"
+      flash[:danger] = "投稿できません"
       render "posts/show"
     end
   end
   
   def destroy
     @comment.destroy
-    flash[:notice] = "コメント削除しました"
+    flash[:danger] = "コメント削除しました"
     redirect_to post_path(@post)
   end
   
@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
       @post = @comment.post
       unless @post.user == current_user
-        flash[:notice] = "削除できません"
+        flash[:danger] = "削除できません"
         redirect_to post_path(@post)
       end
     end

@@ -10,10 +10,10 @@ class ActivationsController < ApplicationController
       # ログインする
       login_session(@user)
       login_cookies(@user)
-      flash[:notice] = "こんにちは#{@user.name}さんアカウントは有効化されました"
+      flash[:info] = "こんにちは#{@user.name}さんアカウントは有効化されました"
       redirect_to @user
     else
-      flash[:notice] = "間違ったメールアドレスです"
+      flash[:danger] = "間違ったメールアドレスです"
       redirect_to root_path
     end
   end

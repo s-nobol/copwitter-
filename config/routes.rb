@@ -97,3 +97,10 @@ end
 
 # like機能が消えたので再生成
 # rails d model Like
+
+# static_pages修正 + フラッシュ編集
+# git checkout -b static_pages
+
+# フラッシュの作成、検索機能、トレンド一覧
+# railsで検索フォームを作ろう
+# Railsでお手軽ランキング機能

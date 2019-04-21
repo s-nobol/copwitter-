@@ -4,31 +4,51 @@
       
       <%= render 'shared/error_messages', object: f.object %>
       
-      <%= f.label :名前 ,class: "mt-2" %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :名前 ,class: "mt-3" %>
+      <%= f.text_field :name, class: 'border w-100 p-1' %>
 
-      <%= f.label :メール ,class: "mt-2"%>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.label :メール ,class: "mt-3"%>
+      <%= f.email_field :email, class: 'border w-100 p-1' %>
       
-      <%= f.label :一言 ,class: "mt-2" %>
-      <%= f.text_field :message, class: 'form-control' %>
+      <%= f.label :ひとこと ,class: "mt-3 " %>
+      <%= f.text_area :message, class: 'border w-100 p-1',"rows" => 5 , placeholder: "メッセージを入力してください" %>
          
-      <%= f.label :住所 ,class: "mt-2" %>
-      <%= f.text_field :address, class: 'form-control' %>
+      <%= f.label :住所 ,class: "mt-3" %>
+      <%= f.text_field :address, class: 'border w-100 p-1' %>
 
-      <%= f.label :リンク ,class: "mt-2"%>
-      <%= f.text_field :link, class: 'form-control' %>
+      <%= f.label :リンク ,class: "mt-3"%>
+      <%= f.text_field :link, class: 'border w-100 p-1' %>
 
-      <%= f.label :生年月日 ,class: "mt-2"%>
-      <%= f.text_field :barthday, class: 'form-control' %>
+      <%= f.label :生年月日 ,class: "mt-3"%>
+      <%= f.text_field :barthday, class: 'border w-100 p-1' %>
   
-       <p>アカウント認証 認証済み</p>
-       <p><%= link_to "パスワードの再設定" , new_password_reset_path %></p>
-       <p>プライバシーポリシー</p>
+       <div class="border-bottom mt-5">
+          <p class="mt-3">アカウント認証 <span class="float-right text-primary">認証済み</span></p>
+       </div>
+       
+       <div class="border-bottom">
+          <p class="mt-3">パスワードの再設定 
+          <span class="float-right text-primary">
+             <%= link_to "再設定する" , new_password_reset_path %>
+          </span>
+          </p>
+       </div>
+       
+       <div class="border-bottom">
+          <div class="mt-3">プライバシーポリシー</div>
+          <small>当アプリでは以下の設定に同意したものとみなします</small>
+          
+          <div>   
+             <!--プライバシーポリシーなんたらかんたら-->
+          </div>
+          <span>同意しました</span>
+       </div>
+       
           
           
-      <%= f.submit "Create my account", class: "btn btn-primary float-right mt-3" %>
-      <p class="text-white mt-5 ">0</p>
+         <div class="text-right mt-4 ">
+              <%= f.submit "保存する", class: "btn btn-secondary  rounded-pill pr-3 pl-3" %>
+       </div>
     <% end %>
     
   

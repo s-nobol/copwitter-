@@ -6,18 +6,18 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params) 
     if @post.save
-      flash[:notice] = "記事の作成"
+      flash[:success] = "記事を作成しました"
       redirect_to current_user
     else
       @feed_items = []
-      flash[:notice] = "内容がありません"
+      flash[:danger] = "内容がありません"
       redirect_to current_user
     end
   end
   
   def destroy
     @post.destroy
-    flash[:notice] = "記事を削除しました"
+    flash[:success] = "記事を削除しました"
     redirect_to current_user
   end
   
