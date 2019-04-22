@@ -31,7 +31,7 @@ class UsersController < ApplicationController
         @user.create_activation_digest
         UserMailer.activation(@user).deliver_now
         
-        flash[:info] = "メールを送信しました #{ edit_activation_url(@user.activation_token, email: @user.email)}"
+        flash[:info] = "メールを送信しました確認してください"
         wants.html { redirect_to(root_path) }
         wants.xml  { render :xml => @user, :status => :created, :location => @user }
       else

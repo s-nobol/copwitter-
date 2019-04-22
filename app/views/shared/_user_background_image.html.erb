@@ -1,14 +1,14 @@
 
 <div class="background_image_form text-center " > 
     <%= form_for(@user,url: update_image_path , method: :post) do |f| %>
-          <div class="text-center " id="img_field" onClick="$('#file').click()" >
+          <div class="text-center " id="img_field_1" onClick="$('#file_1').click()" >
               
               <!--// 画像があるときは画像を表示する-->
               <% if @user.background_image.present? %>
-                <%= image_tag(@user.background_image.url , class:"w-100 h-100", ) %>
+                <%= image_tag(@user.background_image.url , class:"w-100 h-100",id:"icon1") %>
               <% else %>
                 <h1 class="img-fluid pt-5">プロフィール画像</h1>
-                <i class="fas fa-image mt-4" style="font-size:130px;" id="icon"></i>
+                <i class="fas fa-image mt-4" style="font-size:130px;" id="icon1"></i>
               <% end %>
             
             
@@ -16,14 +16,14 @@
                <div class="pt-4 bg-light" style="display: none;" role="status" id="spinner">
                 <span class="spinner-border text-secondary" ></span>
               </div>
-          </div>
-            
+          
+            </div>
           <!--ファイルフォーム-->
-          <%= f.file_field :background_image ,class: "image", style: "display:none;", id: "file" %>
+          <%= f.file_field :background_image ,class: "image", style: "display:none;", id: "file_1" %>
           <div class="update-button">
-            <%= f.submit "アップロード", class: "btn btn-primary ", id:"upload-btn" %> 
+            <%= f.submit "アップロード", class: "btn  btn-secondary", id:"upload_btn" %> 
           </div>
-     
+         
     <% end %>
 </div>
 <!--トリミングjQuery-->
@@ -37,36 +37,35 @@
 <script>
   $(function(){
     
-    $fileField = $('#file')
+    $fileField_1 = $('#file_1')
     var spinner = document.getElementById('spinner')
-    var icon = document.getElementById('icon')
-
+    var backicon = document.getElementById('icon1')
+    
           // ビジーwaitを使う
           function sleep(waitMsec) {
             var startMsec = new Date();
             while (new Date() - startMsec < waitMsec);
           }
-
           // 選択された画像を取得し表示
-          $($fileField).on('change', $fileField, function(e) {
-          file = e.target.files[0]
+          $($fileField_1).on('change', $fileField_1, function(e) {
+          file_1 = e.target.files[0]
             // if (file.size/1024/1024 > 5) {
             //   alert('Maximum file size is 5MB. Please choose a smaller file.');
             // }
-          
           reader = new FileReader(),
-          $preview = $("#img_field");
+          $preview = $("#img_field_1");
           
+          console.log('背景画像読み込み状態', reader.readyState); 
           // 読み込み開始
           reader.onloadstart = (function () { 
-          icon.style.display="none";
+          backicon.style.display="none";
           spinner.style.display="block";
-          console.log('画像読み込み状態', reader.readyState); 
+          console.log('背景画像読み込み状態', reader.readyState); 
           });
               
                
           // 読み込み中
-          reader.onload = (function(file) {
+          reader.onload = (function(file_1) {
             return function(e) {
               $preview.empty();
               sleep(300);
@@ -75,7 +74,7 @@
                 width: "100%",
                 height: "100%",
                 class: "crop_image",
-                title: file.name
+                title: file_1.name
               }));
             };
           })(file);
@@ -83,9 +82,9 @@
           // 読み込み終了
         reader.onloadend = function () { 
             spinner.style.display="none";
-            icon.style.display="block";
-            console.log('画像読み込み状態', reader.readyState); 
-    
+            backicon.style.display="block";
+            console.log('背景画像読み込み状態', reader.readyState); 
+            
             // クラッパー起動
             // var $image = $('.crop_image');
             // $image.css('overflow', 'hidden')
@@ -107,7 +106,15 @@
             //         }
             // });
         };
-      reader.readAsDataURL(file);
+        if(file_1 != null ){
+          console.log("ファイルあり", "");
+          reader.readAsDataURL(file_1);
+          $("#upload_btn").removeClass("btn-secondary")
+          $("#upload_btn").addClass("btn-primary")
+        }else{
+          console.log("ファイルなし","");
+          $("#upload_btn").addClass("btn-secondary")
+        }
     });
     
     

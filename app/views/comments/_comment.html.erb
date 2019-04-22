@@ -17,7 +17,7 @@
         <%= link_to comment.user.name, user_path(comment.user) , class:"text-dark" %>
         <small class="text-muted"><%= comment.created_at %></small>
         
-        <%= "comment.id : #{comment.id}  post_id #{comment.post.id}" %>
+        <%#= "comment.id : #{comment.id}  post_id #{comment.post.id}" %>
         
         <!--削除ボタン-->
         <% if @post.user == current_user %>

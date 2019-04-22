@@ -107,3 +107,9 @@ end
 # フラッシュの作成、検索機能、トレンド一覧
 # railsで検索フォームを作ろうsearch]
 # Railsでお手軽ランキング機能
+
+# コメントのID消す＆＆形修正
+# パスワード発行View修正
+# header_border
+# https://ab3754a4e88547d5a67296354ade9788.vfs.cloud9.us-east-1.amazonaws.com/
+# activations/_92v-isTJcCVzUiYjY7Deg/edit?email=ka1301%40outlook.jp

@@ -14,13 +14,13 @@ class PasswordResetsController < ApplicationController
       # メール送信
       @user.create_password_reset_digest
       UserMailer.password_reset(@user).deliver_now
-      url = edit_password_reset_url(@user.reset_token, email: @user.email)
+      # url = edit_password_reset_url(@user.reset_token, email: @user.email)
       
       # ルートページにリダイレクト
-      flash[:notice] = "メールを送信しました 確認してください #{url}"
+      flash[:info] = "メールを送信しました 確認してください"
       redirect_to root_path
     else
-      flash[:notice] = "該当するユーザーが見つかりません"
+      flash[:danger] = "該当するユーザーが見つかりません"
       render 'new'
     end
   end
@@ -35,7 +35,7 @@ class PasswordResetsController < ApplicationController
       login_session(@user)
       login_cookies(@user)
       
-      flash[:notice] = "パスワードを更新しました"
+      flash[:success] = "パスワードを更新しました"
       redirect_to @user
     else
       render "edit"

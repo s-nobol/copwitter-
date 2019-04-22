@@ -23,7 +23,7 @@
    
     
     <div class="mt-4">
-      <%= f.submit "アップロード", class: "btn btn-primary ", id:"upload-btn" %> 
+      <%= f.submit "アップロード", class: "btn btn-secondary ", id:"upload-btn" %> 
   </div>
 <% end %>
 </div>
@@ -77,8 +77,17 @@
             spinner.style.display="none";
             icon.style.display="block";
             console.log('画像読み込み状態', reader.readyState); 
+        
         };
-      reader.readAsDataURL(file);
+        if(file != null ){
+          console.log("ファイルあり", "");
+          reader.readAsDataURL(file);
+          $("#upload-btn").removeClass("btn-secondary")
+          $("#upload-btn").addClass("btn-primary")
+        }else{
+          console.log("ファイルなし","");
+          $("#upload-btn").addClass("btn-secondary")
+        }
     });
 
   });
