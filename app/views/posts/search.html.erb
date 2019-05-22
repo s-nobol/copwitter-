@@ -8,29 +8,29 @@
 </div>
 
 <!--なんだかわからないbar-->
-<div>
+<div class="">
   <div class="conteiner">
     <nav class="nav p-2">
      
       <a class="nav-link text-dark" href="#" id="link">検索結果：<%= @posts.count %>件該当</a>
-      <a class="nav-link" href="#"  id="link" >人気の記事一覧</a>
+      <!--<a class="nav-link" href="#"  id="link" >人気の記事一覧</a>-->
     </nav>
   </div>
 </div>
   <!--メインView-->
-<div class=" background">
+<div class=" background pb-5 pt-4 ">
   <div class="conteiner"> 
     <div class="row "> 
       
       <!--ユーザーステータス-->
       <div class="col-3 p-2">
-        <p>トレンド</p>
+        <!--<p>トレンド</p>-->
         <%= render "shared/trend"%>
       </div>
       
       <!--記事-->
       <div class="col-6 p-1">
-        <p>記事</p>
+        <!--<p>記事</p>-->
         <% if @posts.any? %>
           <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
               <ul class="navbar-nav  mr-auto">
@@ -60,7 +60,7 @@
 
       <!--トレンド-->
       <div class="col-3 p-1">
-        <p>アクション</p>
+        <!--<p>アクション</p>-->
         <!--もしログインしてなかったら表示-->
         <%= render "shared/user_signup"%>
       </div>

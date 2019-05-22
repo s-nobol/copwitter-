@@ -37,6 +37,31 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid? , "@user.save? = #{@user.save}"
   end
   
+  # メールの検証
+  test "email validation should accept valid addresses" do
+    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+                         first.last@foo.jp alice+bob@baz.cn]
+    valid_addresses.each do |valid_address|
+      @user.email = valid_address
+      assert @user.valid?, "#{valid_address.inspect} should be valid"
+    end
+  end
+  
+  test "email validation should reject invalid addresses" do
+    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
+                           foo@bar_baz.com foo@bar+baz.com]
+    invalid_addresses.each do |invalid_address|
+      @user.email = invalid_address
+      assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
+    end
+  end
+  test "email addresses should be unique" do
+    duplicate_user = @user.dup
+    duplicate_user.email = @user.email.upcase
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+  
   # ユーザーユーザーステータステスト
   test "message > 256" do
     @user.message ="a"*257
@@ -58,15 +83,3 @@ class UserTest < ActiveSupport::TestCase
   end
 end
 
-# name: "123", email: "123@example.com", 
-# image: nil,
-# password_digest: "$2a$10$ESFDZLW0ABI9aaeqpzK7aeSI4oqEBy3UDVM2DVQTRxs...", 
-# created_at: "2019-04-12 13:26:37", updated_at: "2019-04-14 17:46:17", 
-# cookies_digest: "$2a$10$WN7HEgJi1vH9gK9cZ4YK4uaVquBzkq8G8BBTtKhWWOR...",
-# activation_digest: nil, activated: true, reset_digest: "$2a$10$Z6MR7B3MWmM1.e.izz9QaODD9Uy4x5.NJbP4bc0MlKR...", 
-# reset_sent_at: "2019-04-14 17:42:01", 
-# background_image: nil, 
-# message: nil, 
-# address: nil, 
-# link: nil, 
-# barthday: nil> 

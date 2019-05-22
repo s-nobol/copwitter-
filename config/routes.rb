@@ -108,8 +108,8 @@ end
 # railsで検索フォームを作ろうsearch]
 # Railsでお手軽ランキング機能
 
-# コメントのID消す＆＆形修正
-# パスワード発行View修正
-# header_border
-# https://ab3754a4e88547d5a67296354ade9788.vfs.cloud9.us-east-1.amazonaws.com/
-# activations/_92v-isTJcCVzUiYjY7Deg/edit?email=ka1301%40outlook.jp
+# ユーザーメール修正
+# rails g migration add_maileindex_to_users email:string
+# (add_index :users, :email, unique: true)
+
+# ほぼ完成！！

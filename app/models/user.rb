@@ -13,9 +13,13 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   
+  before_save { self.email = email.downcase }
+  
   # バリテーション
   validates :name ,presence: true, length: { maximum: 50 }
-  validates :email ,presence: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email ,presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
   
   has_secure_password
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true

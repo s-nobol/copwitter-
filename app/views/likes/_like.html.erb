@@ -2,7 +2,7 @@
 <%= form_for(post.likes.build , remote: true) do |f| %>
   <%= hidden_field_tag :id, post.id %>
      <%= button_tag(class: "btn  p-0") do %>
-         <i class="far fa-heart " id="fa-btn"> <%= post.likes.count %></i>
+         <i class="far fa-heart " > <%= post.likes.count %></i>
     <% end %>
 <% end %>
 

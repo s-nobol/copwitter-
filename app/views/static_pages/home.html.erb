@@ -23,27 +23,27 @@
     <%= render "shared/motion_bar"%>
     
     <!--メインView-->
-    <div class=" background pb-5">
+    <div class=" background pb-5 pt-4 ">
       <div class="conteiner"> 
         <div class="row "> 
           
           <!--ユーザーステータス-->
           <div class="col-3 p-2">
           
-            <p>ユーザーステータス</p>
+            <!--<p>ユーザーステータス</p>-->
             <%= render "posts/post_form" %>
             <%= render "shared/user_status" %>
           </div>
           
           <!--記事-->
           <div class="col-6 p-1">
-            <p>記事</p>
+            <!--<p>記事</p>-->
             <% if @posts.any? %>
                 <nav class="nav navbar-expand-lg bg-white border-bottom p-2">
                     <!--post_nav-->
                     <ul class="navbar-nav  mr-auto ">
                       <h5><b><%= link_to "ツイート", user_path(@user) ,class:"nav-item mr-3 ml-3" %></b></h5>
-                      <div><%= link_to "ツイートと変身", user_path(@user) ,class:"nav-item" %></div>
+                      <div><%= link_to "ツイートと返信", user_path(@user) ,class:"nav-item" %></div>
                     </ul>
                 </nav> 
           
@@ -60,7 +60,7 @@
     
           <!--トレンド-->
           <div class="col-3 p-1">
-            <p>アクション</p>
+            <!--<p>アクション</p>-->
             <%= render "shared/trend" %>
           </div>
            

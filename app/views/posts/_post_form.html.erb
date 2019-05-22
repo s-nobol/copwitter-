@@ -8,9 +8,9 @@
     </div>
     
     <!--画像フォーム-->
-    <span class="picture">
+    <div class="picture mt-2 mb-2">
       <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-    </span>
+    </div>
     
     <%= f.submit "Post", class: "btn btn-primary btn-sm btn-block " %>
   <% end %>

@@ -133,3 +133,65 @@ img:hover{
   right: 130px;
   z-index: 10;
 }
+
+
+  /*ページネーション*/
+.first{  
+  background-color: white;
+  color: black;
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid gray;
+  border-radius: 3px;	
+  }
+.prev{  
+  background-color: white;
+  color: black;
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid gray;
+  border-radius: 3px;	
+  }
+.page{
+  background-color: white;
+  color: black;
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid gray;
+  border-radius: 3px;	
+}
+.next{
+  background-color: white;
+  color: black;
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid gray;
+  border-radius: 3px;	
+}
+.last{
+  background-color: white;
+  color: black;
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid gray;
+  border-radius: 3px;	
+}
+
+.page a{
+  color: black;
+  padding: 3px;
+  }
+  .page a:hover{
+  color: black;
+  padding: 3px;
+  }
+.translation_missing{
+  color: black;
+  padding: 3px;
+  }
+.current{
+  background-color: dodgerblue;
+  color: white;
+  padding: 3px;
+  }
+  
